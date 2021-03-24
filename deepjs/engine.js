@@ -10,7 +10,7 @@ function updateGUI() {
     document.getElementById("staminabar").style.width = 100*(you.hp/you.maxstamina) + '%';
     document.getElementById("expbar").style.width = 100*(you.hp/you.maxexp) + '%';
     mainmenu.innerHTML = ("Coordinates " + herezone.x + ", " + herezone.y + ". Scouted " + rounded(herezone.revealed) + "% and thereis " + rounded(herezone.investigated) + "% explored. Search units: " + rounded(herezone.hiddenstuff));
-    updateSkillGUI('str', you.str.lvl, you.str.exp);
+    updateSkillGUI('str', you.str.lvl, you.str.exp); //yeah i am lazy retard
     updateSkillGUI('agi', you.agi.lvl, you.agi.exp);
     updateSkillGUI('vit', you.vit.lvl, you.vit.exp);
     updateSkillGUI('per', you.per.lvl, you.per.exp);
