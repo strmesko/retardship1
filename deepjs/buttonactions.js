@@ -63,6 +63,22 @@
                 
             }
             break;
+            case 'Forage':{
+                if  (forageactive == 0){
+                    if (actionscount > 0){
+                        messagelog('You start to gather things');
+                        actionscount -= 1;
+                        forageactive = 1;
+                        document.getElementById('actionbuttonForage').style.backgroundColor = '#fcf088';
+                    } else {messagelog ('No action points.')}
+                } else {
+                    forageactive = 0;
+                    messagelog('You stop foraging');
+                    actionscount += 1;
+                    document.getElementById('actionbuttonForage').style.backgroundColor = '#caf37d';
+                }
+            }
+            break;
             default:
                 messagelog('actionbtnid' + actionbtn);
             break;

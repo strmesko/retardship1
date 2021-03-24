@@ -10,6 +10,7 @@ actionscount = maxactions;
 exploreactive = 0;
 searchactive = 2;
 searchopened = 0;
+forageactive = 2;
 trees = 0;
 grass = 0;
 rocks = 0;

@@ -25,10 +25,13 @@ function updateGUI() {
                 case 'skillsplaceexploration':
                     updateSkillGUI('exploration', you.exploration.lvl, you.exploration.exp);
                 break;
+                case 'skillsplaceforage':
+                    updateSkillGUI('forage',you.forage.lvl, you.forage.exp);
             }
 
         }
     }
+    
 }
 
 
@@ -99,20 +102,19 @@ function mainloop(diff){
     updateGUI();
     lastupdate = Date.now();
 
-    //checkaddcontent();
+    checkaddcontent();
     //messagelog("retardability check");
 }
 
 function checkaddcontent(){
     //starting location checher.
-if (herezone.x == 0 && herezone.y == 0){
-    if (herezone.revealed >= 1 && searchopened == 0){
-        messagelog("You think it's to be more useful if you can get more attention on finding items in area than just walkin around.");
-        messagelog("You can search in area now.");
-        placebutton("Search");
-        searchopened = 1;
-        }
+    if (forageactive == 2 && you.exploration.lvl > 5){
+        forageactive = 0;
+        messagelog("You are now understand how to find things. How about gather things which laying around?")
+        placebutton("Forage");
+        createSkillbar("forage");
     }
+
 }
 
 var rounded = function(number){

@@ -16,6 +16,7 @@
             grass:grass,
             rocks:rocks,
             water:water,
+            forageactive:forageactive,
         }
         localStorage.setItem("data",JSON.stringify(data));
         messagelog('Game saved');
@@ -44,6 +45,8 @@
             grass = saveData.grass;
             rocks = saveData.rocks;
             water = saveData.water;
+            forageactive = saveData.forageactive;
+
         }
         document.getElementById("actionplace").innerHTML = '';
         document.getElementById("skillstab").innerHTML = 'whoaskills';

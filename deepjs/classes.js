@@ -14,6 +14,7 @@ class Character {
         this.maxexp = 100;
         this.attack = 1;
         this.exploration = new Skill("exploration");
+        this.forage = new Skill("forage");
         this.str = new Stat("Strengh");
         this.agi = new Stat("Agility");
         this.vit = new Stat("Vitality");
