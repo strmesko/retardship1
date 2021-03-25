@@ -26,7 +26,8 @@ function updateGUI() {
                     updateSkillGUI('exploration', you.exploration.lvl, you.exploration.exp);
                 break;
                 case 'skillsplaceforage':
-                    updateSkillGUI('forage',you.forage.lvl, you.forage.exp);
+                    updateSkillGUI('forage', you.forage.lvl, you.forage.exp);
+                break;
             }
 
         }
@@ -80,7 +81,10 @@ function productionloop(diff){
                 you.exploration.addexp(1 * diff);
             }
         }
-
+    }
+    if (forageactive == 1){
+        you.per.addexp(0.5*diff);
+        you.forage.addexp(1 * diff);
     }
     //messagelog("tick tock");
 }
@@ -112,7 +116,7 @@ function checkaddcontent(){
         forageactive = 0;
         messagelog("You are now understand how to find things. How about gather things which laying around?")
         placebutton("Forage");
-        createSkillbar("forage");
+
     }
 
 }

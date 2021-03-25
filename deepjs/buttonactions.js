@@ -71,7 +71,7 @@
                         forageactive = 1;
                         document.getElementById('actionbuttonForage').style.backgroundColor = '#fcf088';
                     } else {messagelog ('No action points.')}
-                } else {
+                } else if (forageactive ==1) {
                     forageactive = 0;
                     messagelog('You stop foraging');
                     actionscount += 1;

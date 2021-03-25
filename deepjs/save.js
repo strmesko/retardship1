@@ -32,6 +32,7 @@
         else {
             saveData = JSON.parse(saveData) 
             you = new Character(saveData.you.maxhp, saveData.you.maxmana, saveData.you.maxstamina);
+            you = Object.assign({}, saveData.you)
             herezone = saveData.herezone;
             maxinventory = saveData.maxinventory;
             lastupdate = saveData.lastupdate;
@@ -48,11 +49,9 @@
             forageactive = saveData.forageactive;
 
         }
+        // rebuild the damn whole interface
         document.getElementById("actionplace").innerHTML = '';
         document.getElementById("skillstab").innerHTML = 'whoaskills';
-        if (you.exploration.lvl > 1 || you.exploration.exp != 100) {
-            createSkillbar('exploration');
-        }
         if (herezone.revealed < 100 ){
             placebutton('Explore');
             if (exploreactive == 1){
@@ -63,6 +62,12 @@
             placebutton('Search');
             if (searchactive == 1) {
                 document.getElementById('actionbuttonSearch').style.backgroundColor = '#fcf088';
+            }
+        }
+        if (you.exploration.lvl >= 10){
+            placebutton('Forage');
+            if (forageactive == 1) {
+                document.getElementById('actionbuttonForage').style.backgroundColor = '#fcf088';
             }
         }
         createSkillbar("str");
@@ -76,6 +81,12 @@
         createSkillbar("speed");
         for (i = 0; i < 9; i++) {
             document.getElementById(document.getElementsByClassName("skillsbar")[i].id).style.backgroundColor = '#dfffdf';
+        }
+        if (you.exploration.lvl > 1 || you.exploration.exp != 100) {
+            createSkillbar('exploration');
+        }
+        if (you.forage.lvl > 1 || you.exploration.exp != 100) {
+            createSkillbar('forage');
         }
     messagelog('Game loaded');
     }
