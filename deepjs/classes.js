@@ -84,6 +84,12 @@ class Stat {
 
         }
     }
+    clone(cloned){
+        this.name = cloned.name;
+        this.exp = cloned.exp;
+        this.lvl = cloned.lvl;
+        this.potential = cloned.potential;
+    }
 }
 class Skill {
     constructor (name)
@@ -109,4 +115,29 @@ class Skill {
             else {this.exp -= ( amount * this.potential/100); amount = 0}
         }
     }
+    clone(cloned){
+        this.name = cloned.name;
+        this.exp = cloned.exp;
+        this.lvl = cloned.lvl;
+        this.potential = cloned.potential;
+    }
 }
+class Stonks{
+    constructor()
+    {
+
+    }
+}
+class Resource{
+    constructor()
+    {
+
+    }
+}
+class RawStonks{
+    constructor(){
+        
+    }
+
+}
+

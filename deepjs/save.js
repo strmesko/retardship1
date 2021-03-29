@@ -31,9 +31,33 @@
         }
         else {
             saveData = JSON.parse(saveData) 
-            you = new Character(saveData.you.maxhp, saveData.you.maxmana, saveData.you.maxstamina);
-            you = Object.assign({}, saveData.you)
-            herezone = saveData.herezone;
+//            you = new Character(saveData.you.maxhp, saveData.you.maxmana, saveData.you.maxstamina);
+            you = Object.assign({},saveData.you);
+            //brainlet splints for loadin child elements.
+            you.forage = new Skill(saveData.you.forage);
+            you.exploration = new Skill(saveData.you.exploration.name);
+            you.str = new Skill(saveData.you.str.name);
+            you.agi = new Skill(saveData.you.agi.name);
+            you.vit = new Skill(saveData.you.vit.name);
+            you.per = new Skill(saveData.you.per.name);
+            you.int = new Skill(saveData.you.int.name);
+            you.ins = new Skill(saveData.you.ins.name);
+            you.sou = new Skill(saveData.you.sou.name);
+            you.luck = new Skill(saveData.you.luck.name);
+            you.speed = new Skill(saveData.you.speed.name);
+            //stuupid cloner
+            you.forage.clone(saveData.you.forage);
+            you.exploration.clone(saveData.you.exploration);
+            you.str.clone(saveData.you.str);
+            you.agi.clone(saveData.you.agi);
+            you.vit.clone(saveData.you.vit);
+            you.per.clone(saveData.you.per);
+            you.int.clone(saveData.you.int);
+            you.ins.clone(saveData.you.ins);
+            you.sou.clone(saveData.you.sou);
+            you.luck.clone(saveData.you.luck);
+            you.speed.clone(saveData.you.speed);
+            herezone = Object.assign({},saveData.herezone);
             maxinventory = saveData.maxinventory;
             lastupdate = saveData.lastupdate;
             loglengh = saveData.loglengh;
@@ -64,7 +88,7 @@
                 document.getElementById('actionbuttonSearch').style.backgroundColor = '#fcf088';
             }
         }
-        if (you.exploration.lvl >= 10){
+        if (you.exploration.lvl >= 5){
             placebutton('Forage');
             if (forageactive == 1) {
                 document.getElementById('actionbuttonForage').style.backgroundColor = '#fcf088';
