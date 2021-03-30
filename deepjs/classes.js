@@ -13,17 +13,17 @@ class Character {
         this.lvl = 0;
         this.maxexp = 100;
         this.attack = 1;
-        this.exploration = new Skill("exploration");
-        this.forage = new Skill("forage");
-        this.str = new Stat("Strengh");
-        this.agi = new Stat("Agility");
-        this.vit = new Stat("Vitality");
-        this.per = new Stat("Perception");
-        this.int = new Stat("Intellect");
-        this.ins = new Stat("Insight");
-        this.sou = new Stat("Soul");
-        this.luck = new Stat("Luck");
-        this.speed = new Stat("Speed");
+        this.exploration = new Skill("exploration", "This wonderfull world are just wait ot being explored. you this skill are helps with it.");
+        this.forage = new Skill("forage", "Gather the garbage things like a vacuum sucker");
+        this.str = new Stat("Strengh", "Be stronk, smash hard");
+        this.agi = new Stat("Agility", "I AM SICK **CK A LIKE A QUICK **CK");
+        this.vit = new Stat("Vitality", "Be unstoppable working horse");
+        this.per = new Stat("Perception", "You smell it? Is it's stinks or tasty? How it's looks? Are you notice something? Yeah, perception is helps to answer that questions");
+        this.int = new Stat("Intellect", "Some situations need a logical solution. But using it in wrong situations can blow your mind, or skull.");
+        this.ins = new Stat("Insight", "Inner guide which helps you to solve solutions where intellect cant. You dont know how it's works. Your inner guide");
+        this.sou = new Stat("Soul", "Are you lack of soul? HOW DARE YOU!");
+        this.luck = new Stat("Luck", "You dont know how it works... probably.");
+        this.speed = new Stat("Speed", "GOTTA GO FAST");
         this.speed.lvl = 100;
         this.speed.exp = this.speed.lvl * 100;
     }
@@ -61,8 +61,9 @@ class Quartal {
 }
 
 class Stat {
-    constructor (name)
+    constructor (name, description)
     {
+        this.description = description;
         this.name = name;
         this.exp = 100;
         this.lvl = 1;
@@ -89,15 +90,17 @@ class Stat {
         this.exp = cloned.exp;
         this.lvl = cloned.lvl;
         this.potential = cloned.potential;
+        this.description = cloned.description;
     }
 }
 class Skill {
-    constructor (name)
+    constructor (name, description)
     {
         this.name = name;
         this.exp = 100;
         this.lvl = 1;
         this.potential = 100;
+        this.description = description
     }
     addexp(amount){
         while (amount > 0) {
@@ -120,24 +123,74 @@ class Skill {
         this.exp = cloned.exp;
         this.lvl = cloned.lvl;
         this.potential = cloned.potential;
+        this.description = cloned.description;
     }
 }
-class Stonks{
+// i am retarded enought to not maek a properly tree for storage items, so fuck you, i maek subclasses :-DDDD
+class Storage{
     constructor()
     {
-
+        this.capacity = 50;
+        this.RawFood = new RawFood();
     }
 }
-class Resource{
+class RawFood{
     constructor()
     {
+        this.berries = new Berries();
+    }
+}
+class Berries{
+    constructor()
+    {
+        this.blueberries = new Stonk(1001, "blueberry", 4, "kg", "Yummy black pearls of the forest");
+        this.raspberries = new Stonk(1002, "raspberry", 5, "kg", "Crimson honeycomb of pleasure");
 
     }
 }
-class RawStonks{
-    constructor(){
-        
+class BuildResources{
+    constructor()
+    {
+        this.RawMaterials = new RawMaterials();
     }
-
 }
+class RawMaterials{
+    constructor()
+    {
+        this.Junk = new Junk();
+    }
+}
+class Junk{
+    constructor()
+    {
+        this.stone = new Stonk(1, "Rocks", 2, "", "Common rocks which can be founded everywhere. Yeah it's somewhat heavy");
+        this.branches = new Stonk(2, "Branches", 0.5, "", "just light version of branch");
+        this.sticks = new Stonk(3, "Sticks", 2, "", "A big stick");
+        this.leaves = new Stonk(4, "Leaves", 0.01 , "kg", "Kinda coverable. Not edible, i say IT'S NOT EDIBLE");
+    }
+}
+
+class Stonk{
+    constructor(stonkId, name, Weight, unitType, description)
+    {
+        this.id = stonkId;
+        this.name = name;
+        this.weight = Weight;
+        this.quality = 0;
+        this.amount = 0;
+        this.unitType = unitType;
+        this.description = description;
+
+
+    }
+    modify(volume, quality){
+        if (parentId != 0){
+            if (volume =! 0) {
+                this.quality = ((this.quality * this.amount) + (quality * volume))/(this.amount + volume) 
+                
+            } else {messagelog("ZERO IN VOLUME! U BROEK IT! U BROKE THE STONKS!")}
+        }
+    }
+}
+
 

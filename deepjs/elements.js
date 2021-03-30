@@ -67,6 +67,10 @@
     explorebutton.innerText = "Explore";
 
      //id
+     chartab.id = "chartab";
+     actiontab.id = "actiontab";
+
+
     charcontent.id = "charcontent";
     actioncontent.id = "actionplace";
     hpbar.id = "hpbar";    
@@ -107,11 +111,18 @@
     leftselector.appendChild(skillsbutton);
     respanel.appendChild(resourcetab);
     respanel.appendChild(skillstab);
-
-   
+    ////default TIPS
+    document.getElementById('actiontab').setAttribute('data-tooltip', 'ACTIONS. take a proper job and change the world here');
+    document.getElementById('chartab').setAttribute('data-tooltip', 'NOT EMPLEMENTED YET. character');
+    document.getElementById('resbutton').setAttribute('data-tooltip', 'The palace if your stuff. Sanctuary of garbage');
+    document.getElementById('skillsbutton').setAttribute('data-tooltip', 'Faster, Smarter, Stronger...');
+    document.getElementById('hpbartext').setAttribute('data-tooltip', 'Your Health status. Not mental Health of course.');
+    document.getElementById('manabartext').setAttribute('data-tooltip', 'This shows your spirit fullness... or emptyness.');
+    document.getElementById('staminabartext').setAttribute('data-tooltip', 'Try the way to deal with all workforce you have.');
+    document.getElementById('expbartext').setAttribute('data-tooltip', 'Just progress it.');
 // whoa array of fuckin actionbuttons which plaeced/remooved dynamically
 
-        function placebutton(actionname){
+        function placebutton(actionname, description){
             var actionbutton = document.createElement('button');
             i = document.getElementById('actionplace').childElementCount - 1;
             actionbutton.className = "actionbutton";
@@ -120,6 +131,7 @@
             actionbutton.textContent = actionname;
             actionbutton.style.visibility = 'visible';
             actionplace.appendChild(actionbutton);
+            document.getElementById('actionbutton' + actionname).setAttribute('data-tooltip', description.toString());
             actionbutton.onclick = function(){
                 actionclick(actionname, actionbutton.id);
                 messagelog('derpp' + actionname);
@@ -164,3 +176,42 @@ createSkillbar("speed");
 for (i = 0; i < 9; i++) {
     document.getElementById(document.getElementsByClassName("skillsbar")[i].id).style.backgroundColor = '#dfffdf';
 }
+let tooltipElem;
+
+document.onmouseover = function(event) {
+  let target = event.target;
+
+  // if thereis tooltip
+  let tooltipHtml = target.dataset.tooltip;
+  if (!tooltipHtml) return;
+
+  // create elemunt
+
+  tooltipElem = document.createElement('div');
+  tooltipElem.className = 'tooltip';
+  tooltipElem.innerHTML = tooltipHtml;
+  document.body.append(tooltipElem);
+
+  // default position are top center
+  let coords = target.getBoundingClientRect();
+
+  let left = coords.left + (target.offsetWidth - tooltipElem.offsetWidth) / 2;
+  if (left < 0) left = 0; // booorder
+
+  let top = coords.top - tooltipElem.offsetHeight - 5;
+  if (top < 0) { // show tooltip on bottom if needed
+    top = coords.top + target.offsetHeight + 5;
+  }
+
+  tooltipElem.style.left = left + 'px';
+  tooltipElem.style.top = top + 'px';
+};
+
+document.onmouseout = function(e) {
+
+  if (tooltipElem) {
+    tooltipElem.remove();
+    tooltipElem = null;
+  }
+
+};

@@ -10,23 +10,23 @@ function updateGUI() {
     document.getElementById("staminabar").style.width = 100*(you.hp/you.maxstamina) + '%';
     document.getElementById("expbar").style.width = 100*(you.hp/you.maxexp) + '%';
     mainmenu.innerHTML = ("Coordinates " + herezone.x + ", " + herezone.y + ". Scouted " + rounded(herezone.revealed) + "% and thereis " + rounded(herezone.investigated) + "% explored. Search units: " + rounded(herezone.hiddenstuff));
-    updateSkillGUI('str', you.str.lvl, you.str.exp); //yeah i am lazy retard
-    updateSkillGUI('agi', you.agi.lvl, you.agi.exp);
-    updateSkillGUI('vit', you.vit.lvl, you.vit.exp);
-    updateSkillGUI('per', you.per.lvl, you.per.exp);
-    updateSkillGUI('int', you.int.lvl, you.int.exp);
-    updateSkillGUI('ins', you.ins.lvl, you.ins.exp);
-    updateSkillGUI('sou', you.sou.lvl, you.sou.exp);
-    updateSkillGUI('luck', you.luck.lvl, you.luck.exp);
-    updateSkillGUI('speed', you.speed.lvl, you.speed.exp);
+    updateSkillGUI('str', you.str.lvl, you.str.exp, you.str.description); //yeah i am lazy retard
+    updateSkillGUI('agi', you.agi.lvl, you.agi.exp, you.agi.description);
+    updateSkillGUI('vit', you.vit.lvl, you.vit.exp, you.vit.description);
+    updateSkillGUI('per', you.per.lvl, you.per.exp, you.per.description);
+    updateSkillGUI('int', you.int.lvl, you.int.exp, you.int.description);
+    updateSkillGUI('ins', you.ins.lvl, you.ins.exp, you.ins.description);
+    updateSkillGUI('sou', you.sou.lvl, you.sou.exp, you.sou.description);
+    updateSkillGUI('luck', you.luck.lvl, you.luck.exp, you.luck.description);
+    updateSkillGUI('speed', you.speed.lvl, you.speed.exp, you.speed.description);
     if (document.getElementById('skillstab').childElementCount > 9){
         for (i = 9; i < document.getElementById('skillstab').childElementCount; i++) {
             switch(document.getElementsByClassName("skillsbar")[i].id){
                 case 'skillsplaceexploration':
-                    updateSkillGUI('exploration', you.exploration.lvl, you.exploration.exp);
+                    updateSkillGUI('exploration', you.exploration.lvl, you.exploration.exp, you.exploration.description);
                 break;
                 case 'skillsplaceforage':
-                    updateSkillGUI('forage', you.forage.lvl, you.forage.exp);
+                    updateSkillGUI('forage', you.forage.lvl, you.forage.exp, you.exploration.description);
                 break;
             }
 
@@ -36,9 +36,10 @@ function updateGUI() {
 }
 
 
-function updateSkillGUI(skillname, lvl, exp) {
-    document.getElementById('skillsplace'+skillname).childNodes[0].nodeValue = skillname + " LVL:" + lvl + " EXP remain:" + rounded(exp);
+function updateSkillGUI(skillname, lvl, exp, description) {
+    document.getElementById('skillsplace'+skillname).childNodes[0].nodeValue = skillname+ " LVL:" + lvl + " EXP remain:" + rounded(rounded(exp / (lvl * 100)) * 100) + "%"; //double dounded because paranoid
     document.getElementById('skillbar'+skillname).style.width = (100 - 100*(exp/(lvl*100))) + '%';
+    document.getElementById('skillsplace'+skillname).setAttribute('data-tooltip', description + " LVL:" + lvl + " EXP remain:" + rounded(exp));
 // $('#skillsbar' + skillname).contents()[0].nodeValue = skillname + " LVL:" + lvl + " EXP remain:" + exp;
 //    document.getElementById('skillsbar'+ skillname).= skillname + " LVL:" + lvl + " EXP remain:" + exp;
 
@@ -53,7 +54,7 @@ function productionloop(diff){
             herezone.hiddenstuff = (herezone.hiddenstuff + 1 * (Math.sqrt(you.per.lvl * you.exploration.lvl) * (you.speed.lvl / 100))* diff);
             you.per.addexp(0.5* diff);
             you.exploration.addexp(1 * diff);
-            if (searchactive == 2 && herezone.revealed > 1) {placebutton("Search"); searchactive = 0;}
+            if (searchactive == 2 && herezone.revealed > 1) {placebutton("Search", "Memorize points of interests for further interaction"); searchactive = 0;}
         } else if (exploreactive <2){
             messagelog("Dude. Looks like you explore the area. Well done. Go doing something else ore somewhere else.");
             removebutton("Explore");
@@ -115,7 +116,7 @@ function checkaddcontent(){
     if (forageactive == 2 && you.exploration.lvl > 5){
         forageactive = 0;
         messagelog("You are now understand how to find things. How about gather things which laying around?")
-        placebutton("Forage");
+        placebutton("Forage", "Find things around. Probably garbage, but sometimes food.");
 
     }
 

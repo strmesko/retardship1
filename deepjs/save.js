@@ -77,19 +77,19 @@
         document.getElementById("actionplace").innerHTML = '';
         document.getElementById("skillstab").innerHTML = 'whoaskills';
         if (herezone.revealed < 100 ){
-            placebutton('Explore');
+            placebutton('Explore', 'Explore the entire tile for further investigate. Full tile exploration reveals neighbour tiles');
             if (exploreactive == 1){
                 document.getElementById('actionbuttonExplore').style.backgroundColor = '#fcf088';
             }
         }
         if (herezone.hiddenstuff > 0 && herezone.revealed > 1){
-            placebutton('Search');
+            placebutton('Search', 'Memorize points of interests for further interaction');
             if (searchactive == 1) {
                 document.getElementById('actionbuttonSearch').style.backgroundColor = '#fcf088';
             }
         }
         if (you.exploration.lvl >= 5){
-            placebutton('Forage');
+            placebutton('Forage', 'Find things around. Probably garbage, but sometimes food.');
             if (forageactive == 1) {
                 document.getElementById('actionbuttonForage').style.backgroundColor = '#fcf088';
             }
@@ -106,10 +106,10 @@
         for (i = 0; i < 9; i++) {
             document.getElementById(document.getElementsByClassName("skillsbar")[i].id).style.backgroundColor = '#dfffdf';
         }
-        if (you.exploration.lvl > 1 || you.exploration.exp != 100) {
+        if (you.exploration.lvl > 1 && you.exploration.exp != 100) {
             createSkillbar('exploration');
         }
-        if (you.forage.lvl > 1 || you.exploration.exp != 100) {
+        if (you.forage.lvl != 1 && you.exploration.exp != 100) {
             createSkillbar('forage');
         }
     messagelog('Game loaded');

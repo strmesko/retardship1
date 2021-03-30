@@ -15,3 +15,4 @@ trees = 0;
 grass = 0;
 rocks = 0;
 water = 0;
+storage = new Storage();
