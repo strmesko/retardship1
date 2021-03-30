@@ -55,7 +55,7 @@
     staminabartext.className = "staminabartext";
     expbartext.className = "expbartext"; 
     leftselector.className = "leftselector";
-    leftselector.innerText = "\200";
+    leftselector.innerText = "";
     resbutton.innerText = "resources";
     resbutton.className = "restab";
     skillsbutton.innerText = "stats&skills";
