@@ -185,6 +185,7 @@ html{font: 1.1em "SimSun";}
     height: calc(100% - 130px);
     width: 100%;
     overflow:auto;
+    font: 0.7em "SimSun";
   }
   .actionbutton{
     width: calc(20% - 9px);
@@ -198,7 +199,7 @@ html{font: 1.1em "SimSun";}
   background-color: #ddfff2;
   border: 1px solid;
   border-color: #9fffda;
-  font: 0.7em "SimSun";
+
  }
  .statprogress{
   width: calc(100% - 10px);
@@ -225,3 +226,52 @@ html{font: 1.1em "SimSun";}
   background: rgb(225, 238, 149);
   box-shadow: 3px 3px 3px rgba(65, 39, 5, 0.3);
 }
+
+ul.tree li {
+  list-style-type: none;
+  position: relative;
+}
+
+ul.tree li ul {
+  display: none;
+}
+
+ul.tree li.open > ul {
+  display: block;
+}
+
+ul.tree li a {
+  color: black;
+  text-decoration: none;
+}
+
+ul.tree li a:before {
+  height: 1em;
+  padding:0 .1em;
+  font-size: .8em;
+  display: block;
+  position: absolute;
+  left: -1.3em;
+  top: .2em;
+}
+
+ul.tree li > a:not(:last-child):before {
+  content: '+';
+}
+
+ul.tree li.open > a:not(:last-child):before {
+  content: '-';
+}
+
+.res{
+  border: 1px solid #abe2b1;
+  margin: 0px;
+  padding-left: 18px;
+
+  list-style-image: url("images/test.png");
+  position: relative;
+  
+};
+
+
+

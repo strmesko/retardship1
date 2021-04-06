@@ -22,6 +22,7 @@
     let leftselector = document.createElement('div');
     let resbutton = document.createElement('button');
     let skillsbutton = document.createElement('button'); 
+    let storaeg = document.createElement('li');
     //action buttons
     let explorebutton = document.createElement('button');
     //class names for CSS shit, properties and ID
@@ -32,7 +33,7 @@
     actionselector.className = "actionselect";
     chartab.innerHTML = "Char";
     actiontab.innerHTML = "Action";
-    actioncontent.innerHTML = "\200";
+    actioncontent.innerHTML = "";
     actioncontent.className = "actionplace";
     charcontent.innerHTML = "your charactur";
     chartab.className = "actiontab";
@@ -65,12 +66,12 @@
     skillstab.className = "lefttabs";
     skillstab.innerText = "whoaskills";
     explorebutton.innerText = "Explore";
-
+    //storaeg.className = "res";
      //id
      chartab.id = "chartab";
      actiontab.id = "actiontab";
 
-
+    //storaeg.id = "storage";
     charcontent.id = "charcontent";
     actioncontent.id = "actionplace";
     hpbar.id = "hpbar";    
@@ -111,6 +112,51 @@
     leftselector.appendChild(skillsbutton);
     respanel.appendChild(resourcetab);
     respanel.appendChild(skillstab);
+    resourcetab.appendChild(storaeg);
+    //retarded resource taebl 
+    function stupidResConstructor(elementType, classname, innertext, id, parent, tooltip){
+      if (checkExist(id) != true){
+        newStupidElement = document.createElement(elementType);
+        newStupidElement.className = classname;
+        newStupidElement.innerText = innertext;
+        newStupidElement.id = id;
+        document.getElementById(parent).appendChild(newStupidElement);
+        document.getElementById(id).setAttribute('data-tooltip', tooltip);
+      }
+    }
+    function resBuild(){
+        
+    for (i = 1; i < stocks.length ; i++){
+        if (stocks[i].amount > 0){
+          if (stocks[i].id > 1000 && stocks[i].id < 1100) {
+            stupidResConstructor('ul', 'res', 'raw food', 'rawfoodtab', 'resourcetab', "The gordon says: IT'S A RAW!!!");
+            stupidResConstructor('ul', 'res', 'Berries', 'berriestab', 'rawfoodtab', "Mmmmm berries...");
+            stupidResConstructor('li', stocks[i].name + 'tab', stocks[i].name + ' x:' + stocks[i].amount + stocks[i].unitType , stocks[i].name + 'tab' , 'berriestab', stocks[i].description);
+          }
+          if (stocks[i].id < 200) {
+            stupidResConstructor('ul', 'res', 'raw resources', 'rawrestab', 'resourcetab', 'Raw unedible things to find');
+            stupidResConstructor('ul', 'res', 'nature recources', 'naturerestab', 'rawrestab', 'Your local treasury from nature');
+            stupidResConstructor('li', stocks[i].name + 'tab', stocks[i].name + ' x:' + rounded(stocks[i].amount) + stocks[i].unitType , stocks[i].name + 'tab' , 'naturerestab', stocks[i].description);
+          }
+          document.getElementById(stocks[i].name + 'tab').innerText = stocks[i].name + ' x:' + rounded(stocks[i].amount) + stocks[i].unitType ;
+      }
+    }
+  }
+  resBuild();
+//    stupidResConstructor('ul', 'res', 'test', 'testtab', 'rawfoodtab', "WHOA TUULTIP");
+    //    stupidResConstructor('ul', 'res', 'test', 'testtab', 'rawfoodtab', "WHOA TUULTIP");
+    function addResourceDisplay(parentId, text, thisId, description) //muh skills are grown up and i maek constructor. i am too lazy ro modify A WHOLE INTERFAEC with that
+    {
+      if (checkExist(thisId) != true){
+        rawfoodtab = document.createElement('li');
+        rawfoodtab.ClassName = 'res';
+        rawfoodtab.innerText = text.toString();
+        rawfoodtab.id = thisId;
+        document.getElementById(parentId.toString()).appendChild(thisId.toString());
+        document.getElementById(thisId).setAttribute('data-tooltip', description.toString());
+      }
+    }
+    
     ////default TIPS
     document.getElementById('actiontab').setAttribute('data-tooltip', 'ACTIONS. take a proper job and change the world here');
     document.getElementById('chartab').setAttribute('data-tooltip', 'NOT EMPLEMENTED YET. character');
@@ -123,6 +169,7 @@
 // whoa array of fuckin actionbuttons which plaeced/remooved dynamically
 
         function placebutton(actionname, description){
+          if (checkExist('actionbutton' + actionname) != true){
             var actionbutton = document.createElement('button');
             i = document.getElementById('actionplace').childElementCount - 1;
             actionbutton.className = "actionbutton";
@@ -136,6 +183,7 @@
                 actionclick(actionname, actionbutton.id);
                 messagelog('derpp' + actionname);
             }
+          }
 
         }
         function removebutton(buttonname){
@@ -178,7 +226,7 @@ for (i = 0; i < 9; i++) {
 }
 let tooltipElem;
 
-document.onmouseover = function(event) {
+document.onmouseover = function(event) { //tuultip whoa :o
   let target = event.target;
 
   // if thereis tooltip

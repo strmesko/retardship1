@@ -19,6 +19,7 @@ function updateGUI() {
     updateSkillGUI('sou', you.sou.lvl, you.sou.exp, you.sou.description);
     updateSkillGUI('luck', you.luck.lvl, you.luck.exp, you.luck.description);
     updateSkillGUI('speed', you.speed.lvl, you.speed.exp, you.speed.description);
+    resBuild();
     if (document.getElementById('skillstab').childElementCount > 9){
         for (i = 9; i < document.getElementById('skillstab').childElementCount; i++) {
             switch(document.getElementsByClassName("skillsbar")[i].id){
@@ -33,6 +34,13 @@ function updateGUI() {
         }
     }
     
+}
+function checkExist(elementId){
+    var element =  document.getElementById(elementId);
+if (typeof(element) != 'undefined' && element != null)
+{
+    return true;
+}
 }
 
 
@@ -86,10 +94,33 @@ function productionloop(diff){
     if (forageactive == 1){
         you.per.addexp(0.5*diff);
         you.forage.addexp(1 * diff);
+        forage((you.speed.lvl / 100) + Math.pow((you.agi.lvl * 0.9) * you.forage.lvl *(you.exploration.lvl/ 10) * ( Math.pow((trees + grass), 1/5)), 1/3));
+        //messagelog('tick tock')
     }
     //messagelog("tick tock");
 }
-
+function forage(amount){
+    while (amount > 0){
+        //dice the foorag (difficulty, place in massive, amount)
+        forageRoll(5, 1, 0.01);
+        forageRoll(5, 2, 0.01);
+        forageRoll(10, 3, 0.01);
+        forageRoll(15, 4, 0.01);
+        forageRoll(18, 5, 0.01);
+        forageRoll(20, 6, 0.01);
+        forageRoll(25, 7, 15);
+        forageRoll(5, 8, 1);
+        forageRoll(1, 9, 0.5);
+        forageRoll(15, 10, 1);   
+        forageRoll(1, 11, 0.1);      
+        amount -= 1;
+        messagelog('berrydice');
+    }
+}
+function forageRoll(difficulty, itemType, profitAmount){
+    forRoll = Math.random(1) * (Math.pow((you.per.lvl * you.forage.lvl)+(you.luck.lvl* 0.01), 1/3));
+    if (forRoll > difficulty) {stocks[itemType].amount += profitAmount; messagelog("whoa berry"); messagelog(rounded(forRoll) + ">" + rounded(difficulty))}
+}
 function getactionbuttonid(actionname){
     var aTags = document.getElementsByClassName("actionbutton");
     var found;

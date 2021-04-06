@@ -17,6 +17,7 @@
             rocks:rocks,
             water:water,
             forageactive:forageactive,
+            stocks:stocks,
         }
         localStorage.setItem("data",JSON.stringify(data));
         messagelog('Game saved');
@@ -71,6 +72,18 @@
             rocks = saveData.rocks;
             water = saveData.water;
             forageactive = saveData.forageactive;
+            if (stocks.length == saveData.stocks.length){stocks = saveData.stocks}
+            else{
+                messagelog('New resources in save game are missing! Resorting...')
+                for (i = 0; i < stocks.length; i++){ //retarded sorting but it's better than pogoSort :P
+                    for (t = 0; t < saveData.stocks.length; t++){
+                        if ( stocks[i].id == stocks[t].id){
+                            stocks[i] = saveData.stocks[t];
+                        }
+                    }
+                }
+            }
+
 
         }
         // rebuild the damn whole interface

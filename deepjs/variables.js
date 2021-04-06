@@ -15,4 +15,16 @@ trees = 0;
 grass = 0;
 rocks = 0;
 water = 0;
-storage = new Storage();
+//stonks being here
+stocks = new Array(new Stonk());
+stocks.push(new Stonk(1001, "blueberry", 4, "kg", "Yummy black pearls of the forest"));
+stocks.push(new Stonk(1002, "raspberry", 5, "kg", "Crimson honeycomb of pleasure"));
+stocks.push(new Stonk(1003, "cornberry", 5, "kg", "Because YOU NEED CORN. Imagine..."));
+stocks.push(new Stonk(1004, "strawberry", 5, "kg", "Tasty red Bolid of vitamins. Yum!"));
+stocks.push(new Stonk(1005, "honeysuckle", 5, "kg", "Are this taste of epilepsy?"));
+stocks.push(new Stonk(1005, "sea​​buckthorn", 5, "kg", "Amber abyss of sour"));
+stocks.push(new Stonk(1006, "watermelon", 5, "kg", "KFS AN WATERMELONS. yeah, watermelon are berry too."));
+stocks.push(new Stonk(1, "Rocks", 2, "", "Common rocks which can be founded everywhere. Yeah it's somewhat heavy"));
+stocks.push(new Stonk(2, "Branches", 0.5, "", "just light version of branch"));
+stocks.push(new Stonk(3, "Sticks", 2, "", "A big stick"));
+stocks.push(new Stonk(4, "Leaves", 0.01 , "kg", "Kinda coverable. Not edible, i say IT'S NOT EDIBLE"));

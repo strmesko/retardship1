@@ -130,45 +130,16 @@ class Skill {
 class Storage{
     constructor()
     {
-        this.capacity = 50;
-        this.RawFood = new RawFood();
-    }
-}
-class RawFood{
-    constructor()
-    {
-        this.berries = new Berries();
-    }
-}
-class Berries{
-    constructor()
-    {
         this.blueberries = new Stonk(1001, "blueberry", 4, "kg", "Yummy black pearls of the forest");
         this.raspberries = new Stonk(1002, "raspberry", 5, "kg", "Crimson honeycomb of pleasure");
-
-    }
-}
-class BuildResources{
-    constructor()
-    {
-        this.RawMaterials = new RawMaterials();
-    }
-}
-class RawMaterials{
-    constructor()
-    {
-        this.Junk = new Junk();
-    }
-}
-class Junk{
-    constructor()
-    {
         this.stone = new Stonk(1, "Rocks", 2, "", "Common rocks which can be founded everywhere. Yeah it's somewhat heavy");
         this.branches = new Stonk(2, "Branches", 0.5, "", "just light version of branch");
         this.sticks = new Stonk(3, "Sticks", 2, "", "A big stick");
         this.leaves = new Stonk(4, "Leaves", 0.01 , "kg", "Kinda coverable. Not edible, i say IT'S NOT EDIBLE");
     }
 }
+
+
 
 class Stonk{
     constructor(stonkId, name, Weight, unitType, description)
