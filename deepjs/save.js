@@ -18,6 +18,7 @@
             water:water,
             forageactive:forageactive,
             stocks:stocks,
+            restactive:restactive,
         }
         localStorage.setItem("data",JSON.stringify(data));
         messagelog('Game saved');
@@ -37,6 +38,7 @@
             //brainlet splints for loadin child elements.
             you.forage = new Skill(saveData.you.forage);
             you.exploration = new Skill(saveData.you.exploration.name);
+            you.rest = new Skill(saveData.you.rest.name);
             you.str = new Skill(saveData.you.str.name);
             you.agi = new Skill(saveData.you.agi.name);
             you.vit = new Skill(saveData.you.vit.name);
@@ -72,6 +74,7 @@
             rocks = saveData.rocks;
             water = saveData.water;
             forageactive = saveData.forageactive;
+            restactive = saveData.restactive;
             if (stocks.length == saveData.stocks.length){stocks = saveData.stocks}
             else{
                 messagelog('New resources in save game are missing! Resorting...')
@@ -87,6 +90,7 @@
 
         }
         // rebuild the damn whole interface
+        calculateStats();
         document.getElementById("actionplace").innerHTML = '';
         document.getElementById("skillstab").innerHTML = 'whoaskills';
         if (herezone.revealed < 100 ){
@@ -107,6 +111,13 @@
                 document.getElementById('actionbuttonForage').style.backgroundColor = '#fcf088';
             }
         }
+        if (restactive < 2){
+            placebutton("Rest", "Just doing nothing are not enough. Let's enjoy it to the fullest!");
+            if (restactive == 1) {
+                document.getElementById('actionbuttonRest').style.backgroundColor = '#fcf088';
+            }
+        }
+
         createSkillbar("str");
         createSkillbar("agi");
         createSkillbar("vit");

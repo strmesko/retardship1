@@ -111,6 +111,7 @@ html{font: 1.1em "SimSun";}
     font: 1.1em "SimSun";
     font-size:.9em;
     background-image: linear-gradient(to right, orange , green);
+
   }
   .manabar {
     position: absolute;
@@ -119,6 +120,7 @@ html{font: 1.1em "SimSun";}
     font: 1.1em "SimSun";
     font-size:.9em;
     background-image: linear-gradient(to right, cyan, #0051ff);
+
   }
   .staminabar {
     position: absolute;
@@ -126,7 +128,8 @@ html{font: 1.1em "SimSun";}
     width: 50%;
     font: 1.1em "SimSun";
     font-size:.9em;
-    background-image: linear-gradient(to right, orange, yellow);
+    background-image: linear-gradient(to right, orange, rgb(231, 231, 18));
+
   }
   .expbar {
     position: absolute;
@@ -135,6 +138,7 @@ html{font: 1.1em "SimSun";}
     font: 1.1em "SimSun";
     font-size:.9em;
     background-image: linear-gradient(to right, purple, magenta);
+
   }
   .hpbartext {
     position:absolute;

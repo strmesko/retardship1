@@ -79,6 +79,22 @@
                 }
             }
             break;
+            case 'Rest':{
+                if  (restactive == 0){
+                    if (actionscount > 0){
+                        messagelog('Lets rest');
+                        actionscount -= 1;
+                        restactive = 1;
+                        document.getElementById('actionbuttonRest').style.backgroundColor = '#fcf088';
+                    } else {messagelog ('No action points.')}
+                } else if (restactive ==1) {
+                    restactive = 0;
+                    messagelog('Your rest is over');
+                    actionscount += 1;
+                    document.getElementById('actionbuttonRest').style.backgroundColor = '#caf37d';
+                }
+            }
+            break;
             default:
                 messagelog('actionbtnid' + actionbtn);
             break;

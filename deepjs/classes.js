@@ -10,11 +10,12 @@ class Character {
         this.mana = maxmana;
         this.stamina = maxstamina;
         this.exp = 0;
-        this.lvl = 0;
+        this.lvl = 1;
         this.maxexp = 100;
         this.attack = 1;
         this.exploration = new Skill("exploration", "This wonderfull world are just wait ot being explored. you this skill are helps with it.");
         this.forage = new Skill("forage", "Gather the garbage things like a vacuum sucker");
+        this.rest = new Skill("Rest", "The art of sloth. Poor way to regain stamina");
         this.str = new Stat("Strengh", "Be stronk, smash hard");
         this.agi = new Stat("Agility", "I AM SICK **CK A LIKE A QUICK **CK");
         this.vit = new Stat("Vitality", "Be unstoppable working horse");
@@ -80,8 +81,9 @@ class Stat {
                 this.exp = this.lvl*100;
                 this.potential = this.potential * 0.90;
                 messagelog("Your " + this.name + " are now level " + this.lvl);
+                
             }
-            else {this.exp -= ( amount * this.potential/100); amount = 0}
+            else {this.exp -= ( amount * this.potential/100); amount = 0; calculateStats();}
 
         }
     }

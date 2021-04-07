@@ -1,14 +1,15 @@
 function updateGUI() {
     //retarded health display numbers part
-    document.getElementById("hpbartext").innerHTML = "<b>"+you.hp.toString() + "/" + you.maxhp.toString() + "HP</b>";
-    document.getElementById("manabartext").innerHTML = "<b>"+you.mana.toString() + "/" + you.maxmana.toString() + "MANA</b>";
-    document.getElementById("staminabartext").innerHTML ="<b>"+ you.stamina.toString() + "/" + you.maxstamina.toString() + "SP</b>"; 
-    document.getElementById("expbartext") .innerHTML = "<b>"+you.exp.toString()   + "/" + you.maxexp.toString() + "EXP</b>"
+    calculateStats();
+    document.getElementById("hpbartext").innerHTML = "<b>"+ rounded(you.hp).toString() + "/" + you.maxhp.toString() + "HP</b>";
+    document.getElementById("manabartext").innerHTML = "<b>"+ rounded(you.mana).toString() + "/" + you.maxmana.toString() + "MANA</b>";
+    document.getElementById("staminabartext").innerHTML ="<b>"+ rounded(you.stamina).toString() + "/" + you.maxstamina.toString() + "SP</b>"; 
+    document.getElementById("expbartext") .innerHTML = "<b>"+rounded(you.exp).toString()   + "/" + you.maxexp.toString() + "EXP</b>"
     //maek bars alive
     document.getElementById("hpbar").style.width = 100*(you.hp/you.maxhp) + '%';
-    document.getElementById("manabar").style.width = 100*(you.hp/you.maxmana) + '%';
-    document.getElementById("staminabar").style.width = 100*(you.hp/you.maxstamina) + '%';
-    document.getElementById("expbar").style.width = 100*(you.hp/you.maxexp) + '%';
+    document.getElementById("manabar").style.width = 100*(you.mana/you.maxmana) + '%';
+    document.getElementById("staminabar").style.width = 100*(you.stamina/you.maxstamina) + '%';
+    document.getElementById("expbar").style.width = 100*(you.exp/you.maxexp) + '%';
     mainmenu.innerHTML = ("Coordinates " + herezone.x + ", " + herezone.y + ". Scouted " + rounded(herezone.revealed) + "% and thereis " + rounded(herezone.investigated) + "% explored. Search units: " + rounded(herezone.hiddenstuff));
     updateSkillGUI('str', you.str.lvl, you.str.exp, you.str.description); //yeah i am lazy retard
     updateSkillGUI('agi', you.agi.lvl, you.agi.exp, you.agi.description);
@@ -21,13 +22,16 @@ function updateGUI() {
     updateSkillGUI('speed', you.speed.lvl, you.speed.exp, you.speed.description);
     resBuild();
     if (document.getElementById('skillstab').childElementCount > 9){
-        for (i = 9; i < document.getElementById('skillstab').childElementCount; i++) {
-            switch(document.getElementsByClassName("skillsbar")[i].id){
+        for (i = 9; i < document.getElementById("skillstab").childElementCount; i++) {
+            switch(document.getElementsByClassName('skillsbar')[i].id){
                 case 'skillsplaceexploration':
                     updateSkillGUI('exploration', you.exploration.lvl, you.exploration.exp, you.exploration.description);
                 break;
                 case 'skillsplaceforage':
                     updateSkillGUI('forage', you.forage.lvl, you.forage.exp, you.exploration.description);
+                break;
+                case 'skillsplaceRest':
+                    updateSkillGUI('Rest', you.rest.lvl, you.rest.exp, you.rest.description);
                 break;
             }
 
@@ -35,6 +39,15 @@ function updateGUI() {
     }
     
 }
+function calculateStats(){
+    you.maxhp = rounded(Math.pow((you.str.lvl + you.vit.lvl * 3 + you.sou.lvl), (1.1 + (0.1 * you.lvl))));
+    you.maxmana = rounded(Math.pow((you.int.lvl * 2 + you.sou.lvl + you.ins.lvl * 2), (1.1 + (0.1 * you.lvl))));
+    you.maxstamina = rounded(Math.pow((you.str.lvl + you.agi.lvl +  you.vit.lvl * 2 + you.sou.lvl), (1.1 + (0.1 * you.lvl))));
+    if (you.hp > you.maxhp) {you.hp = you.maxhp};
+    if (you.mana > you.maxmana) {you.mana = you.maxmana};
+    if (you.stamina > you.maxstamina) {you.stamina = you.maxstamina};
+    //updateGUI();
+    }
 function checkExist(elementId){
     var element =  document.getElementById(elementId);
 if (typeof(element) != 'undefined' && element != null)
@@ -55,9 +68,10 @@ function updateSkillGUI(skillname, lvl, exp, description) {
 
 function productionloop(diff){
 //this is income shit multiplied by diff tiem. whoa chrono fuckin shit
+if (diff == null) {diff = 1; }   
+staminaRegen(diff);
     if (exploreactive == 1){
-        if (diff == null) {diff = 0; }
-        if (herezone.revealed < 100 ) {
+            if (herezone.revealed < 100 ) {
             herezone.revealed = herezone.revealed + 0.01 * (Math.sqrt(you.per.lvl * you.exploration.lvl) * (you.speed.lvl / 100))* diff;
             herezone.hiddenstuff = (herezone.hiddenstuff + 1 * (Math.sqrt(you.per.lvl * you.exploration.lvl) * (you.speed.lvl / 100))* diff);
             you.per.addexp(0.5* diff);
@@ -68,7 +82,8 @@ function productionloop(diff){
             removebutton("Explore");
             exploreactive = 2;
             actionscount += 1;
-            herezone.revealed = 100; //
+            herezone.revealed = 100;
+            
         }
     }
     if (searchactive == 1){
@@ -91,6 +106,21 @@ function productionloop(diff){
             }
         }
     }
+    if (restactive == 1){
+        if (you.stamina < you.maxstamina){
+            staminaRegen(diff + (diff * (0.1 * (you.rest.lvl + you.stamina / 5))));
+            if (you.stamina > you.maxstamina) {you.stamina = you.maxstamina}
+            you.rest.addexp(diff + (diff * (0.1 * (you.rest.lvl + you.stamina / 5))));
+            you.vit.addexp(diff + (diff * (0.1 * (you.rest.lvl + you.stamina / 5)))/10);
+            
+            
+        } else {
+            messagelog("You are rested enough");
+            removebutton("Rest");
+            restactive = 2;
+            actionscount += 1;
+        }
+    } 
     if (forageactive == 1){
         you.per.addexp(0.5*diff);
         you.forage.addexp(1 * diff);
@@ -101,20 +131,27 @@ function productionloop(diff){
 }
 function forage(amount){
     while (amount > 0){
-        //dice the foorag (difficulty, place in massive, amount)
-        forageRoll(5, 1, 0.01);
-        forageRoll(5, 2, 0.01);
-        forageRoll(10, 3, 0.01);
-        forageRoll(15, 4, 0.01);
-        forageRoll(18, 5, 0.01);
-        forageRoll(20, 6, 0.01);
-        forageRoll(25, 7, 15);
-        forageRoll(5, 8, 1);
-        forageRoll(1, 9, 0.5);
-        forageRoll(15, 10, 1);   
-        forageRoll(1, 11, 0.1);      
-        amount -= 1;
-        messagelog('berrydice');
+        if (you.stamina > 0.1){
+            //dice the foorag (difficulty, place in massive, amount)
+            forageRoll(5, 1, 0.01);
+            forageRoll(5, 2, 0.01);
+            forageRoll(10, 3, 0.01);
+            forageRoll(15, 4, 0.01);
+            forageRoll(18, 5, 0.01);
+            forageRoll(20, 6, 0.01);
+            forageRoll(25, 7, 15);
+            forageRoll(5, 8, 1);
+            forageRoll(1, 9, 0.5);
+            forageRoll(15, 10, 1);   
+            forageRoll(1, 11, 0.1);      
+            amount -= 1;
+            messagelog('berrydice X'+ amount);
+            you.stamina -= 0.1;
+        } else {
+            document.getElementById("actionbuttonForage").onclick();
+            messagelog('you are too tired and cannot forage anymore');
+            amount = 0;
+        }
     }
 }
 function forageRoll(difficulty, itemType, profitAmount){
@@ -132,14 +169,32 @@ function getactionbuttonid(actionname){
     }    
 
 }
+function staminaRegen(timeAmount){
+    var regenAmount = rounded(Math.pow((you.vit.lvl * you.rest.lvl * (you.sou.lvl* 0.01)), 1/2) * timeAmount);
+    if (you.stamina == you.maxstamina) {}
+    else if (you.stamina + regenAmount > you.maxstamina){
+        you.rest.addexp(rounded((you.maxstamina - you.stamina)/ regenAmount * timeAmount));
+        you.vit.addexp(rounded((you.maxstamina - you.stamina)/ regenAmount / 10 * timeAmount));
+        you.stamina = you.maxstamina;
+        
+    } else {
+        you.vit.addexp(0.1);
+        you.rest.addexp(1);
+        you.stamina += regenAmount;
+        
+    }
+    you.stamina = rounded(you.stamina);
+}
 function mainloop(diff){
-    var diff = parseInt((Date.now() - lastupdate) / 1000);
+    var diff = parseInt((Date.now() - lastupdate) / 1000).toFixed();
+  
     productionloop(diff);
     updateGUI();
     lastupdate = Date.now();
 
     checkaddcontent();
     //messagelog("retardability check");
+    //mesasgelog(diff);
 }
 
 function checkaddcontent(){
@@ -149,6 +204,10 @@ function checkaddcontent(){
         messagelog("You are now understand how to find things. How about gather things which laying around?")
         placebutton("Forage", "Find things around. Probably garbage, but sometimes food.");
 
+    }
+    if (restactive == 2 && you.stamina < you.maxstamina){
+        placebutton("Rest", "Just doing nothing are not enough. Let's enjoy it to the fullest!");
+        restactive = 0;
     }
 
 }
