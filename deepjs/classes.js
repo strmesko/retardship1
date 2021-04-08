@@ -15,7 +15,9 @@ class Character {
         this.attack = 1;
         this.exploration = new Skill("exploration", "This wonderfull world are just wait ot being explored. you this skill are helps with it.");
         this.forage = new Skill("forage", "Gather the garbage things like a vacuum sucker");
-        this.rest = new Skill("Rest", "The art of sloth. Poor way to regain stamina");
+        this.rest = new Skill("rest", "The art of sloth. Poor way to regain stamina");
+        this.meditation = new Skill("Meditation", "It's like a doin nothing but in intellegent way");
+        this.regeneration = new Skill("Regeneration", "WHOA YOUR SEVERED LIMB ARE GROWS BACK AGAIN!");
         this.str = new Stat("Strengh", "Be stronk, smash hard");
         this.agi = new Stat("Agility", "I AM SICK **CK A LIKE A QUICK **CK");
         this.vit = new Stat("Vitality", "Be unstoppable working horse");
@@ -27,6 +29,14 @@ class Character {
         this.speed = new Stat("Speed", "GOTTA GO FAST");
         this.speed.lvl = 100;
         this.speed.exp = this.speed.lvl * 100;
+    }
+    addexp(amount){
+        while ( exp + amount > maxexp){
+            this.lvl +=1;
+            amoint -= this.maxexp;
+            this.maxexp = this.maxexp * 2;
+        }
+        this.exp += amount;
     }
 }
 class Equipment {
@@ -107,7 +117,7 @@ class Skill {
     addexp(amount){
         while (amount > 0) {
             if (this.lvl == 1 && this.exp == 100 && this.potential){
-                createSkillbar(this.name);
+               createSkillbar(this.name);
             }
             if ((amount * this.potential/100) > this.exp)
             {

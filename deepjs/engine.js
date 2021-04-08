@@ -30,8 +30,14 @@ function updateGUI() {
                 case 'skillsplaceforage':
                     updateSkillGUI('forage', you.forage.lvl, you.forage.exp, you.exploration.description);
                 break;
-                case 'skillsplaceRest':
-                    updateSkillGUI('Rest', you.rest.lvl, you.rest.exp, you.rest.description);
+                case 'skillsplacerest':
+                    updateSkillGUI('rest', you.rest.lvl, you.rest.exp, you.rest.description);
+                break;
+                case 'skillsplaceRegeneration':
+                    updateSkillGUI('Regeneration', you.regeneration.lvl, you.regeneration.exp, you.regeneration.description);
+                break;
+                case 'skillsplaceMeditation':
+                    updateSkillGUI('Meditation', you.meditation.lvl, you.meditation.exp, you.meditation.description);
                 break;
             }
 
@@ -70,6 +76,8 @@ function productionloop(diff){
 //this is income shit multiplied by diff tiem. whoa chrono fuckin shit
 if (diff == null) {diff = 1; }   
 staminaRegen(diff);
+hpRegen(diff);
+manaRegen(diff);
     if (exploreactive == 1){
             if (herezone.revealed < 100 ) {
             herezone.revealed = herezone.revealed + 0.01 * (Math.sqrt(you.per.lvl * you.exploration.lvl) * (you.speed.lvl / 100))* diff;
@@ -108,10 +116,10 @@ staminaRegen(diff);
     }
     if (restactive == 1){
         if (you.stamina < you.maxstamina){
-            staminaRegen(diff + (diff * (0.1 * (you.rest.lvl + you.stamina / 5))));
+            staminaRegen(diff * (1 + (0.1 * (you.rest.lvl + you.vit.lvl / 5))));
             if (you.stamina > you.maxstamina) {you.stamina = you.maxstamina}
-            you.rest.addexp(diff + (diff * (0.1 * (you.rest.lvl + you.stamina / 5))));
-            you.vit.addexp(diff + (diff * (0.1 * (you.rest.lvl + you.stamina / 5)))/10);
+            you.rest.addexp(diff * (1 +(0.1 * (you.rest.lvl + you.vit.lvl / 5))));
+            you.vit.addexp(diff * (1 + (0.1 * (you.rest.lvl + you.vit.lvl / 5)))/10);
             
             
         } else {
@@ -184,6 +192,40 @@ function staminaRegen(timeAmount){
         
     }
     you.stamina = rounded(you.stamina);
+}
+function hpRegen(timeAmount){
+    var regenAmount = rounded(Math.pow((you.vit.lvl * you.regeneration.lvl * (you.sou.lvl* 0.01))/5, 1/2) * timeAmount);
+    if (you.hp == you.maxhp) {}
+    else if (you.hp + regenAmount > you.maxhp){
+        you.regeneration.addexp(rounded((you.maxhp - you.hp)/ regenAmount * timeAmount));
+        you.vit.addexp(rounded((you.maxhp - you.hp)/ regenAmount / 10 * timeAmount));
+        you.hp = you.maxhp;
+        
+    } else {
+        you.vit.addexp(0.1);
+        you.regeneration.addexp(1);
+        you.hp += regenAmount;
+        
+    }
+    you.hp = rounded(you.hp);
+}
+function manaRegen(timeAmount){
+    var regenAmount = rounded(Math.pow((you.int.lvl * you.meditation.lvl * (you.sou.lvl* 0.01)), 1/2) * timeAmount);
+    if (you.mana == you.maxmana) {}
+    else if (you.mana + regenAmount > you.maxmana){
+        you.meditation.addexp(rounded((you.maxmana - you.mana)/ regenAmount * timeAmount));
+        you.int.addexp(rounded((you.maxmana - you.mana)/ regenAmount / 10 * timeAmount));
+        you.sou.addexp(rounded((you.maxmana - you.mana)/ regenAmount / 50 * timeAmount));
+        you.mana = you.maxmana;
+        
+    } else {
+        you.int.addexp(0.1);
+        you.sou.addexp(0.02);
+        you.meditation.addexp(1);
+        you.mana += regenAmount;
+        
+    }
+    you.mana = rounded(you.mana);
 }
 function mainloop(diff){
     var diff = parseInt((Date.now() - lastupdate) / 1000).toFixed();

@@ -37,8 +37,10 @@
             you = Object.assign({},saveData.you);
             //brainlet splints for loadin child elements.
             you.forage = new Skill(saveData.you.forage);
-            you.exploration = new Skill(saveData.you.exploration.name);
-            you.rest = new Skill(saveData.you.rest.name);
+            you.exploration = new Skill(saveData.you.exploration);
+            you.rest = new Skill(saveData.you.rest);
+            you.meditation = new Skill(saveData.you.meditation);
+            you.regeneration = new Skill(saveData.you.regeneration);
             you.str = new Skill(saveData.you.str.name);
             you.agi = new Skill(saveData.you.agi.name);
             you.vit = new Skill(saveData.you.vit.name);
@@ -51,6 +53,9 @@
             //stuupid cloner
             you.forage.clone(saveData.you.forage);
             you.exploration.clone(saveData.you.exploration);
+            you.regeneration.clone(saveData.you.regeneration);
+            you.meditation.clone(saveData.you.meditation);
+            you.rest.clone(saveData.you.rest);
             you.str.clone(saveData.you.str);
             you.agi.clone(saveData.you.agi);
             you.vit.clone(saveData.you.vit);
@@ -135,6 +140,15 @@
         }
         if (you.forage.lvl != 1 && you.exploration.exp != 100) {
             createSkillbar('forage');
+        }
+        if (you.rest.lvl != 1 && you.rest.exp != 100) {
+            createSkillbar('rest');
+        }
+        if (you.meditation.lvl != 1 && you.meditation.exp != 100) {
+            createSkillbar('meditation');
+        }
+        if (you.regeneration.lvl != 1 && you.regeneration.exp != 100) {
+            createSkillbar('regeneration');
         }
     messagelog('Game loaded');
     }
