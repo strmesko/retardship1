@@ -9,6 +9,10 @@
         actionTab(event, 'actionplace')
         messagelog('actions click');
     };
+    maptab.onclick = function(){
+        actionTab(event, 'mapcontent')
+        messagelog('map click');
+    };
     //left tab selector
     resbutton.onclick = function(){
         leftactionTab(event, 'resourcetab')
@@ -95,9 +99,36 @@
                 }
             }
             break;
+            case 'Go north':{
+                newTile(herezone.x, herezone.y - 1);
+                herezone = pickTile(herezone.x, herezone.y - 1);
+                messagelog('north yoo');
+            break;
+            }
+            case 'Go south':{
+                newTile(herezone.x, herezone.y + 1);
+                herezone = pickTile(herezone.x, herezone.y + 1);
+                messagelog('south yoo');
+            break;
+            }
+            case 'Go east':{
+                newTile(herezone.x + 1, herezone.y );
+                herezone = pickTile(herezone.x + 1, herezone.y);
+                messagelog('north yoo');
+            break;
+            }
+            case 'Go west':{
+                newTile(herezone.x - 1, herezone.y );
+                herezone = pickTile(herezone.x - 1, herezone.y );
+                messagelog('west yoo');
+            break;
+            }
             default:
                 messagelog('actionbtnid' + actionbtn);
             break;
             }
         }
-
+       /* placebutton("Go north", "Freeze to death.");
+        placebutton("Go south", "Roastlands");
+        placebutton("Go east", "Enjoy the anime.");
+        placebutton("Go west", "Doing columbus."); */

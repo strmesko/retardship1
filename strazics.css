@@ -5,6 +5,7 @@ html{font: 1.1em "SimSun";}
     border-radius: 4px;
     color: #3c763d;
     background-color: #dff0d8;
+    z-index: 100;
   }
   .allblock {
     width: 100%;
@@ -24,7 +25,7 @@ html{font: 1.1em "SimSun";}
     display: flex;
     border: 1px solid #abe2b1;
     background-color: #e8ffea;
-
+    z-index: 1;
   }
 
   .topic {
@@ -36,6 +37,7 @@ html{font: 1.1em "SimSun";}
     display: flex;
     border: 1px solid #abe2b1;
     background-color: #e8ffea;
+    z-index: 1;
   }
 
   .rightbar {
@@ -48,13 +50,16 @@ html{font: 1.1em "SimSun";}
     font: 1em "MS Gothic";
     border: 1px solid #abe2b1;
     background-color: #e8fff4;
-    overflow-y: scroll;
+    overflow-x: scroll;
+    z-index: 1;
+
   }
 
   .logdiv{
     width: 100%;
     font-size: .9em;
     color: blue;
+    z-index: 1;
 
   }
   .actionselect {
@@ -66,12 +71,12 @@ html{font: 1.1em "SimSun";}
     display: flex;
     border: 1px solid #abe2b1;
     background-color: #e8ffea;
-
+    z-index: 1;
   }
 
   .actiontab {
     background-color: #caf37d;
-
+    z-index: 1;
   }
   .actionplace {
     position: absolute;
@@ -81,6 +86,7 @@ html{font: 1.1em "SimSun";}
     top: 82px;
     width: 60%;
     height: calc(100% - 82px);
+
 
   }
   .actiontext {
@@ -103,6 +109,7 @@ html{font: 1.1em "SimSun";}
     text-align: center;
     font-size: 1.3em;
     font: 1.1em "Arial Black";
+    z-index: 1;
   }
   .hpbar {
     position:absolute;
@@ -111,6 +118,7 @@ html{font: 1.1em "SimSun";}
     font: 1.1em "SimSun";
     font-size:.9em;
     background-image: linear-gradient(to right, orange , green);
+    z-index: 1;
 
   }
   .manabar {
@@ -120,7 +128,7 @@ html{font: 1.1em "SimSun";}
     font: 1.1em "SimSun";
     font-size:.9em;
     background-image: linear-gradient(to right, cyan, #0051ff);
-
+    z-index: 1;
   }
   .staminabar {
     position: absolute;
@@ -129,7 +137,7 @@ html{font: 1.1em "SimSun";}
     font: 1.1em "SimSun";
     font-size:.9em;
     background-image: linear-gradient(to right, orange, rgb(231, 231, 18));
-
+    z-index: 1;
   }
   .expbar {
     position: absolute;
@@ -138,7 +146,7 @@ html{font: 1.1em "SimSun";}
     font: 1.1em "SimSun";
     font-size:.9em;
     background-image: linear-gradient(to right, purple, magenta);
-
+    z-index: 1;
   }
   .hpbartext {
     position:absolute;
@@ -146,6 +154,7 @@ html{font: 1.1em "SimSun";}
     width: 100%;    
     font: 1.1em "SimSun";
     font-size:.9em;
+    z-index: 1;
   }
   .manabartext {
     position:absolute;
@@ -153,7 +162,7 @@ html{font: 1.1em "SimSun";}
     width: 100%;    
     font: 1.1em "SimSun";
     font-size:.9em;
-    
+    z-index: 1;
   }
   .staminabartext {
     position:absolute;
@@ -161,6 +170,7 @@ html{font: 1.1em "SimSun";}
     width: 100%;    
     font: 1.1em "SimSun";
     font-size:.9em;
+    z-index: 1;
   }
   .expbartext {
     position:absolute;
@@ -168,18 +178,21 @@ html{font: 1.1em "SimSun";}
     width: 100%;    
     font: 1.1em "SimSun";
     font-size:.9em;
+    z-index: 1;
   }
   .leftselector{
     position: absolute;
     top: 108px;
-    width: 100%;
+    width: calc(100% - 1px);
     height: 22px;
     background-color: #ddfff2;
     border: 1px solid #abe2b1;
+    z-index: 1;
   }
   .restab{
-    width: calc(50% - 1px);
+    width: calc(50% - 2px);
     background-color: #caf37d;
+    z-index: 1;
   }
   .lefttabs{
     position: absolute;
@@ -187,9 +200,10 @@ html{font: 1.1em "SimSun";}
     border: 1px solid #abe2b1;
     top: 130px;
     height: calc(100% - 130px);
-    width: 100%;
+    width: calc(100% - 1px);
     overflow:auto;
     font: 0.7em "SimSun";
+    z-index: 1;
   }
   .actionbutton{
     width: calc(20% - 9px);
@@ -229,6 +243,7 @@ html{font: 1.1em "SimSun";}
   color: rgb(82, 56, 7);
   background: rgb(225, 238, 149);
   box-shadow: 3px 3px 3px rgba(65, 39, 5, 0.3);
+  z-index: 1;
 }
 
 ul.tree li {
@@ -275,7 +290,28 @@ ul.tree li.open > a:not(:last-child):before {
   list-style-image: url("images/test.png");
   position: relative;
   
-};
+}
 
+.livemap{
+
+  position:absolute;
+  border: 1px solid  #ff9203;
+  background-color: rgb(0, 0, 0);
+  outline: none;
+  overflow: hidden;
+}
+.tile{
+
+  position:absolute;
+  width: 30px;
+  height: 30px;
+  z-index: 1;
+  outline: none;
+  background-color: red;
+  overflow: visible;
+  visibility: visible;
+  clear:both;
+  overflow: hidden;
+}
 
 

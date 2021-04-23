@@ -19,6 +19,7 @@
             forageactive:forageactive,
             stocks:stocks,
             restactive:restactive,
+            worldmap:worldmap,
         }
         localStorage.setItem("data",JSON.stringify(data));
         messagelog('Game saved');
@@ -80,6 +81,7 @@
             water = saveData.water;
             forageactive = saveData.forageactive;
             restactive = saveData.restactive;
+            worldmap = saveData.worldmap;
             if (stocks.length == saveData.stocks.length){stocks = saveData.stocks}
             else{
                 messagelog('New resources in save game are missing! Resorting...')

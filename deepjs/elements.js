@@ -5,6 +5,7 @@
     let actionselector = document.createElement('tab');
     let chartab = document.createElement('button');
     let actiontab = document.createElement('button');
+    let maptab = document.createElement('button');
     let actioncontent = document.createElement('div');
     let charcontent = document.createElement('div');
     let actiontext = document.createElement('b2');
@@ -23,6 +24,7 @@
     let resbutton = document.createElement('button');
     let skillsbutton = document.createElement('button'); 
     let storaeg = document.createElement('li');
+    let mapcontent = document.createElement('div');
     //action buttons
     let explorebutton = document.createElement('button');
     //class names for CSS shit, properties and ID
@@ -38,6 +40,8 @@
     charcontent.innerHTML = "your charactur";
     chartab.className = "actiontab";
     actiontab.className = "actiontab";
+    maptab.className = "actiontab"
+    maptab.innerHTML = "Map";
     charcontent.className = "actionplace";
     actiontext.ClassName = "actiontext";
     actiontext.innerText = "\200";
@@ -66,11 +70,15 @@
     skillstab.className = "lefttabs";
     skillstab.innerText = "whoaskills";
     explorebutton.innerText = "Explore";
+    mapcontent.innerHTML = "map";
+    mapcontent.className = "actionplace";
     //storaeg.className = "res";
      //id
      chartab.id = "chartab";
      actiontab.id = "actiontab";
-
+     maptab.id = "maptab";
+     mapcontent.id = "mapcontent";
+     //stupidResConstructor('div', 'actionplace', 'map', 'mapplace', 'maptab', "THE MAP! DIRECTLY STOLEN FROM DORA!!!")
     //storaeg.id = "storage";
     charcontent.id = "charcontent";
     actioncontent.id = "actionplace";
@@ -95,8 +103,10 @@
     document.body.appendChild(actionselector);
     actionselector.appendChild(chartab);
     actionselector.appendChild(actiontab);
+    actionselector.appendChild(maptab);
     document.body.appendChild(actioncontent);
     document.body.appendChild(charcontent);
+    document.body.appendChild(mapcontent);
     actioncontent.appendChild(actiontext);
     respanel.appendChild(charstate);
     charstate.appendChild(hpbar);
@@ -113,6 +123,8 @@
     respanel.appendChild(resourcetab);
     respanel.appendChild(skillstab);
     resourcetab.appendChild(storaeg);
+
+    
     //retarded resource taebl 
     function stupidResConstructor(elementType, classname, innertext, id, parent, tooltip){
       if (checkExist(id) != true){
@@ -166,7 +178,7 @@
     document.getElementById('manabartext').setAttribute('data-tooltip', 'This shows your spirit fullness... or emptyness.');
     document.getElementById('staminabartext').setAttribute('data-tooltip', 'Try the way to deal with all workforce you have.');
     document.getElementById('expbartext').setAttribute('data-tooltip', 'Just progress it.');
-// whoa array of fuckin actionbuttons which plaeced/remooved dynamically
+// whoa array of fuggin actionbuttons which plaeced/remooved dynamically
 
         function placebutton(actionname, description){
           if (checkExist('actionbutton' + actionname) != true){

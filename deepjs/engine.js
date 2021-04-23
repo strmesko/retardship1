@@ -137,6 +137,14 @@ manaRegen(diff);
     }
     //messagelog("tick tock");
 }
+function maprefresh(quartal){
+    for (i = 0; i < worldmap.length; i++){
+        if ((worldmap[i].x == quartal.x) && (worldmap[i].y == quartal.y)){
+            worldmap[i] = quartal;
+        }
+    }
+}
+
 function forage(amount){
     while (amount > 0){
         if (you.stamina > 0.1){
@@ -251,6 +259,13 @@ function checkaddcontent(){
         placebutton("Rest", "Just doing nothing are not enough. Let's enjoy it to the fullest!");
         restactive = 0;
     }
+    if (herezone.revealed >= 100){
+        placebutton("Go north", "Freeze to death.");
+        placebutton("Go south", "Roastlands");
+        placebutton("Go east", "Enjoy the anime.");
+        placebutton("Go west", "Doing columbus.");
+    }
+
 
 }
 
@@ -266,6 +281,58 @@ function messagelog(logtext){
     var logscount = document.getElementById('gamelog').childElementCount;
     if (logscount > loglengh) {
         document.getElementById('gamelog').removeChild(document.getElementById('gamelog').getElementsByClassName('logdiv')[loglengh]);
+    }
+}
+function drawTile(x,y, type){ //this is function to draw new tile and add it to map. Resize map border if tile coordinates out of range
+    tilename = 'TileX'+x+'Y'+y
+    if (document.getElementById(tilename) == null){
+        stupidResConstructor('div','tile','',tilename,'livemap','Whoa this is a '+ type + ' tile. X:' + x + ' Y:' + y);
+        stupidResConstructor('img','tileImage','@',tilename +'img',tilename,'Whoa this is a '+ type + ' tile. X:' + x + ' Y:' + y + 'image') ;
+        document.getElementById(tilename + 'img').src = 'images/tiles/' + type + '.gif';//just retarded enough to not make in different element
+        document.getElementById(tilename + 'img').style.position = 'relative';
+        document.getElementById(tilename + 'img').style.height = '100%';
+        document.getElementById(tilename + 'img').style.width = '100%';
+        document.getElementById(tilename).style.backgroundImage = 'images/tiles/' + type + '.gif'; // map tile display with gif yeah baby
+        document.getElementById(tilename).style.left = (x + mapcenterx) * 30  + 'px';
+        document.getElementById(tilename).style.top = (y + mapcentery) * 30 + 'px';
+     if (x == 0 && y == 0) {document.getElementById('livemap').style.width = '30px';document.getElementById('livemap').style.height = '30px'; }
+     if (x >= 0){
+            if (mapborderx < x ){
+                document.getElementById('livemap').style.width = (x + 1 + mapcenterx) * 30 + 'px';
+                mapborderx = x ;
+                messagelog (document.getElementById('livemap').style.width + ' x' + x + 'mapborders' + mapborderx )        
+            }
+        } else {
+            if ( -x > mapcenterx) {
+                mapmove = (mapcenterx + x)*-1;
+                messagelog(mapmove);
+                mapborderx += mapmove;
+                mapcenterx += mapmove;
+                mapRender()
+                document.getElementById('livemap').style.width = (mapborderx + 1) * 30 + 'px';
+                for (t = 0; t < document.getElementById('livemap').childElementCount; t++){
+                    document.getElementById(document.getElementById('livemap').children[t].id).style.left = parseInt(document.getElementById(document.getElementById('livemap').children[t].id).style.left) + (mapmove) * 30  + 'px';
+                    document.getElementById(tilename).style.left = (x + mapcenterx) * 30 + 'px';
+                } 
+            }
+        }
+        if (y >= 0){ if (mapbordery < y)
+            document.getElementById('livemap').style.height = (y + 1 + mapcentery) * 30 + 'px';
+            mapbordery = y;
+        } else {
+            if ( -y > mapcentery) {
+                mapmove = (mapcentery + y)*-1;
+                messagelog(mapmove);
+                mapbordery += mapmove;
+                mapcentery += mapmove;
+                mapRender()
+                document.getElementById('livemap').style.height = (mapbordery + 1) * 30 + 'px';
+                for (t = 0; t < document.getElementById('livemap').childElementCount; t++){
+                    document.getElementById(document.getElementById('livemap').children[t].id).style.top = parseInt(document.getElementById(document.getElementById('livemap').children[t].id).style.top) + (mapmove) * 30  + 'px';
+                    document.getElementById(tilename).style.top = (y + mapcentery) * 30 + 'px';
+                } 
+            }
+        }
     }
 }
 setInterval(mainloop, 1000);

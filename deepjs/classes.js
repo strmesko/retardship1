@@ -30,14 +30,14 @@ class Character {
         this.speed.lvl = 100;
         this.speed.exp = this.speed.lvl * 100;
     }
-    addexp(amount){
-        while ( exp + amount > maxexp){
-            this.lvl +=1;
-            amoint -= this.maxexp;
-            this.maxexp = this.maxexp * 2;
-        }
-        this.exp += amount;
+}
+function addexp(character, amount){
+    while ( character.exp + amount > character.maxexp){
+        character.lvl +=1;
+        amount -= character.maxexp;
+        character.maxexp = character.maxexp * 2;
     }
+    character.exp += amount;
 }
 class Equipment {
     constructor (slot, attack, def)
@@ -68,6 +68,18 @@ class Quartal {
         this.investigated = 0;
         this.hiddenstuff = 0;
         this.land = new Land
+    }
+}
+class Chunk {
+    constructor(x,y)
+    {
+        this.tile = new Array(50);
+        for (var dx = 0; dx <50; dx++){
+            this.tile[dx] = new Array(50);
+            for (var dy = 0; dy <50; dy++){
+             this.tile[dx][dy] = new Quartal(x*50+dx,y*50+dy);
+            }
+        }
     }
 }
 
@@ -139,6 +151,7 @@ class Skill {
     }
 }
 // i am retarded enought to not maek a properly tree for storage items, so fuck you, i maek subclasses :-DDDD
+// no, i even more retarded. so we got ID  now
 class Storage{
     constructor()
     {
