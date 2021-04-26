@@ -152,6 +152,16 @@
         if (you.regeneration.lvl != 1 && you.regeneration.exp != 100) {
             createSkillbar('regeneration');
         }
+        livemap.innerHTML = '';
+        document.getElementById('livemap').style.width = 30;
+        document.getElementById('livemap').style.height = 30;
+        for (t = 0; t < worldmap.length; t++) {
+            for (dx = 0; dx < 50; dx++){
+                for (dy = 0; dy < 50; dy++){
+                    
+                }
+            }
+        }
     messagelog('Game loaded');
     }
     
