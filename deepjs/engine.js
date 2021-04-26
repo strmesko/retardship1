@@ -84,7 +84,6 @@ manaRegen(diff);
             herezone.hiddenstuff = (herezone.hiddenstuff + 1 * (Math.sqrt(you.per.lvl * you.exploration.lvl) * (you.speed.lvl / 100))* diff);
             you.per.addexp(0.5* diff);
             you.exploration.addexp(1 * diff);
-            if (searchactive == 2 && herezone.revealed > 1) {placebutton("Search", "Memorize points of interests for further interaction"); searchactive = 0;}
         } else if (exploreactive <2){
             messagelog("Dude. Looks like you explore the area. Well done. Go doing something else ore somewhere else.");
             removebutton("Explore");
@@ -146,6 +145,7 @@ function maprefresh(quartal){
 }
 
 function forage(amount){
+    messagelog('foragerolls' + amount);
     while (amount > 0){
         if (you.stamina > 0.1){
             //dice the foorag (difficulty, place in massive, amount)
@@ -167,6 +167,7 @@ function forage(amount){
             document.getElementById("actionbuttonForage").onclick();
             messagelog('you are too tired and cannot forage anymore');
             amount = 0;
+
         }
     }
 }
@@ -248,16 +249,17 @@ function mainloop(diff){
 }
 
 function checkaddcontent(){
-    //starting location checher.
-    if (forageactive == 2 && you.exploration.lvl > 5){
-        forageactive = 0;
-        messagelog("You are now understand how to find things. How about gather things which laying around?")
+    if (herezone.revealed != 100 && exploreactive == 2){placebutton("Explore", "Explore the entire tile for further investigate. Full tile exploration reveals neighbour tiles"); exploreactive = 0;}
+    if (herezone.revealed > 1 && searchactive != 1 && herezone.hiddenstuff > 0){placebutton("Search", "Memorize points of interests for further interaction"); searchactive = 0} else {if (searchactive != 1) {searchactive = 2;}}
+        //starting location checher.
+    if (you.exploration.lvl > 5){
+        if (forageactive == 2) {messagelog("You are now understand how to find things. How about gather things which laying around?"); forageactive = 0;}
         placebutton("Forage", "Find things around. Probably garbage, but sometimes food.");
 
     }
-    if (restactive == 2 && you.stamina < you.maxstamina){
+    if (  you.stamina < you.maxstamina){
         placebutton("Rest", "Just doing nothing are not enough. Let's enjoy it to the fullest!");
-        restactive = 0;
+        if (restactive == 2){restactive = 0; messagelog('How about rest?')}
     }
     if (herezone.revealed >= 100){
         placebutton("Go north", "Freeze to death.");
@@ -336,3 +338,6 @@ function drawTile(x,y, type){ //this is function to draw new tile and add it to 
     }
 }
 setInterval(mainloop, 1000);
+function tileRefresh(tile){
+    pickTile(tile.x, tile.y) = tile;
+}

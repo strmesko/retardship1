@@ -26,6 +26,7 @@
 
 
     function actionclick(actionbtn,btnid){
+        
         switch (actionbtn) {
             case 'Explore':
                 if (exploreactive == 0)
@@ -57,7 +58,7 @@
                     }
                     else {messagelog('No action points.')}                    
                 }
-                else {
+                else if (searchactive == 1){
                     exploreactive == 1;
                     document.getElementById(btnid).style.backgroundColor = '#caf37d';
                     messagelog('You stop to search things')
@@ -100,27 +101,43 @@
             }
             break;
             case 'Go north':{
+                if (actionscount == maxactions){
                 newTile(herezone.x, herezone.y - 1);
                 herezone = pickTile(herezone.x, herezone.y - 1);
                 messagelog('north yoo');
+                actionplace.innerHTML = '';
+                checkaddcontent();
+                } else {messagelog('To change location turn off all your actions first.')}
             break;
             }
             case 'Go south':{
-                newTile(herezone.x, herezone.y + 1);
-                herezone = pickTile(herezone.x, herezone.y + 1);
-                messagelog('south yoo');
+                if (actionscount == maxactions){
+                    newTile(herezone.x, herezone.y + 1);
+                    herezone = pickTile(herezone.x, herezone.y + 1);
+                    messagelog('south yoo');
+                    actionplace.innerHTML = '';
+                    checkaddcontent();                    
+                } else {messagelog('To change location turn off all your actions first.')}                
             break;
             }
             case 'Go east':{
-                newTile(herezone.x + 1, herezone.y );
-                herezone = pickTile(herezone.x + 1, herezone.y);
-                messagelog('north yoo');
+                if (actionscount == maxactions){
+                    newTile(herezone.x + 1, herezone.y );
+                    herezone = pickTile(herezone.x + 1, herezone.y);
+                    messagelog('north yoo');
+                    actionplace.innerHTML = '';
+                    checkaddcontent();                    
+                } else {messagelog('To change location turn off all your actions first.')}                
             break;
             }
             case 'Go west':{
-                newTile(herezone.x - 1, herezone.y );
-                herezone = pickTile(herezone.x - 1, herezone.y );
-                messagelog('west yoo');
+                if (actionscount == maxactions){
+                    newTile(herezone.x - 1, herezone.y );
+                    herezone = pickTile(herezone.x - 1, herezone.y );
+                    messagelog('west yoo');
+                    actionplace.innerHTML = '';
+                    checkaddcontent();                    
+                } else {messagelog('To change location turn off all your actions first.')}                
             break;
             }
             default:
