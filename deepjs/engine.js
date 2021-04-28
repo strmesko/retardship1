@@ -287,6 +287,7 @@ function messagelog(logtext){
 }
 function drawTile(x,y, type){ //this is function to draw new tile and add it to map. Resize map border if tile coordinates out of range
     tilename = 'TileX'+x+'Y'+y
+    mapmove = 0;
     if (document.getElementById(tilename) == null){
         stupidResConstructor('div','tile','',tilename,'livemap','Whoa this is a '+ type + ' tile. X:' + x + ' Y:' + y);
         stupidResConstructor('img','tileImage','@',tilename +'img',tilename,'Whoa this is a '+ type + ' tile. X:' + x + ' Y:' + y + 'image') ;
@@ -298,7 +299,7 @@ function drawTile(x,y, type){ //this is function to draw new tile and add it to 
         document.getElementById(tilename).style.left = (x + mapcenterx) * 30  + 'px';
         document.getElementById(tilename).style.top = (y + mapcentery) * 30 + 'px';
      if (x == 0 && y == 0) {document.getElementById('livemap').style.width = '30px';document.getElementById('livemap').style.height = '30px'; }
-     if (x >= 0){
+     else if (x >= 0){
             if (mapborderx < x ){
                 document.getElementById('livemap').style.width = (x + 1 + mapcenterx) * 30 + 'px';
                 mapborderx = x ;
@@ -318,6 +319,7 @@ function drawTile(x,y, type){ //this is function to draw new tile and add it to 
                 } 
             }
         }
+        mapmove = 0;
         if (y >= 0){ if (mapbordery < y)
             document.getElementById('livemap').style.height = (y + 1 + mapcentery) * 30 + 'px';
             mapbordery = y;
