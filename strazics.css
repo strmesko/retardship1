@@ -71,11 +71,18 @@ html{font: 1.1em "SimSun";}
     display: flex;
     border: 1px solid #abe2b1;
     background-color: #e8ffea;
+
     z-index: 1;
   }
 
   .actiontab {
     background-color: #caf37d;
+    border: 3px double rgb(159, 206, 73);
+    border-radius: 4px;
+    margin: 1px;
+    font: 1em "MS Gothic";
+    font-size: .9em;
+    
     z-index: 1;
   }
   .actionplace {
@@ -144,7 +151,7 @@ html{font: 1.1em "SimSun";}
     top: 87px;
     width: 50%;
     font: 1.1em "SimSun";
-    font-size:.9em;
+    font-size:.8em;
     background-image: linear-gradient(to right, purple, magenta);
     z-index: 1;
   }
@@ -153,7 +160,7 @@ html{font: 1.1em "SimSun";}
     top: 27px;
     width: 100%;    
     font: 1.1em "SimSun";
-    font-size:.9em;
+    font-size:.8em;
     z-index: 1;
   }
   .manabartext {
@@ -161,15 +168,15 @@ html{font: 1.1em "SimSun";}
     top: 47px;
     width: 100%;    
     font: 1.1em "SimSun";
-    font-size:.9em;
+    font-size:.8em;
     z-index: 1;
   }
   .staminabartext {
     position:absolute;
     top: 67px;
     width: 100%;    
-    font: 1.1em "SimSun";
-    font-size:.9em;
+    font: 1.2em "SimSun";
+    font-size:.8em;
     z-index: 1;
   }
   .expbartext {
@@ -177,7 +184,7 @@ html{font: 1.1em "SimSun";}
     top: 87px;
     width: 100%;    
     font: 1.1em "SimSun";
-    font-size:.9em;
+    font-size:.8em;
     z-index: 1;
   }
   .leftselector{
@@ -192,6 +199,10 @@ html{font: 1.1em "SimSun";}
   .restab{
     width: calc(50% - 2px);
     background-color: #caf37d;
+    border: 2px solid rgb(159, 206, 73);
+    border-radius: 2px;
+    margin-left: 1px;
+    font: 0.7em "SimSun";
     z-index: 1;
   }
   .lefttabs{
@@ -209,6 +220,8 @@ html{font: 1.1em "SimSun";}
     width: calc(20% - 9px);
     height: 40px;
     background-color: #caf37d;    
+    border: 4px double rgb(159, 206, 73);
+    border-radius: 4px;
     visibility: hidden;
     margin: 4px;
   }

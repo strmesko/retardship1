@@ -165,13 +165,13 @@
             
                 ix = worldmap[td].tile[0][0].x
                 iy = worldmap[td].tile[0][0].y
-                messagelog('ix:' + ix + ' iy' + iy);
+                messagelog('Loading chunk. ix:' + ix + ' iy' + iy);
                 for (dx = 0; dx < 50; dx++){
                     for (dy = 0; dy < 50; dy++){
                         if (worldmap[td] != undefined){
                             if (worldmap[td].tile[dx][dy].name != undefined){
                                 drawTile(ix + dx, iy + dy, worldmap[td].tile[dx][dy].name)
-                                //messagelog('draw tile. X:' + (ix + dx) + ' Y:' + (iy + dy) + ' Tile:' );
+                                
                             }
                         }
                     }

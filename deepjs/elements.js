@@ -44,7 +44,7 @@
     maptab.innerHTML = "Map";
     charcontent.className = "actionplace";
     actiontext.ClassName = "actiontext";
-    actiontext.innerText = "\200";
+    actiontext.innerText = "";
     charstate.className = "charstate";
     charstate.innerText = you.name;
     hpbar.className = "hpbar";
