@@ -310,6 +310,8 @@ document.onmouseout = function(e) {
   stupidResConstructor('div', 'inventoryPlace', '', 'inventoryPlace', 'charcontent', '')
  for (t = 0; t < you.equipinventory.length; t++){
   stupidResConstructor('div', 'invslot', '', 'invslot'+t, 'inventoryPlace', 'empty slot') ;
+  //stupidResConstructor('div', 'invslotimg', '', 'invslotimg'+t, 'invslot'+t, 'empty slot') ;
+  //document.getElementById('invslotimg'+t).src = 'images/tiles/Forest.gif'
  }
     // subtabs for crafting 
     stupidResConstructor('button', 'craftsub', 'common', 'craftcommon', 'craftplace', 'Just a common junk to craft');

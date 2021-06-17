@@ -342,6 +342,7 @@ ul.tree li.open > a:not(:last-child):before {
     background-repeat: no-repeat;
   }
   .craftsub {
+    height: 27px;
     background-color: #f3eb7d;
     border: 3px double rgb(197, 206, 73);
     border-radius: 4px;
@@ -352,13 +353,14 @@ ul.tree li.open > a:not(:last-child):before {
     z-index: 1;
   }
   .buildsub {
+    height: 27px;
     background-color: #f3eb7d;
     border: 3px double rgb(197, 206, 73);
     border-radius: 4px;
     margin: 2px;
     font: 1em "MS Gothic";
     font-size: .9em;
-    
+
     z-index: 1;
   }
   .craftsubplace {
@@ -448,6 +450,7 @@ ul.tree li.open > a:not(:last-child):before {
 
 .invslot {
   display:inline-block;
+  float:left; 
   width: 30px;
   height: 30px;
   background-color: #d2e2d0;
@@ -456,4 +459,19 @@ ul.tree li.open > a:not(:last-child):before {
   margin: 1px;
   font: 1em "MS Gothic";
   font-size: .9em;
+  background-size:cover;
+  background-image: url("images/tiles/Forest.gif");
+
+}
+.invslotimg {
+  width: 100%;
+  height: 100%;
+  position:relative;
+  z-index: 1;
+  outline: none;
+  background-color: red;
+  overflow: visible;
+  visibility: visible;
+  clear:both;
+  overflow: hidden; 
 }
