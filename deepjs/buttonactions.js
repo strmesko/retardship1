@@ -13,6 +13,14 @@
         actionTab(event, 'mapcontent')
         messagelog('map click');
     };
+    crafttab.onclick = function(){
+        actionTab(event, 'craftplace')
+        messagelog('craft click');
+    };
+    buildtab.onclick = function(){
+        actionTab(event, 'buildplace')
+        messagelog('build click');
+    };
     //left tab selector
     resbutton.onclick = function(){
         leftactionTab(event, 'resourcetab')
@@ -22,7 +30,19 @@
         leftactionTab(event, 'skillstab')
         messagelog('skillsclick');
     };
-
+    //craft tab selector
+    craftcommon.onclick = function(){
+        craftSubTab(event, 'commonplace')
+        messagelog('commonclick');
+    };
+    craftfood.onclick = function(){
+        craftSubTab(event, 'foodplace')
+        messagelog('foodclick');
+    };
+    crafttools.onclick = function(){
+        craftSubTab(event, 'toolsplace')
+        messagelog('toolsclick');
+    };
 
 
     function actionclick(actionbtn,btnid){

@@ -54,13 +54,7 @@ function calculateStats(){
     if (you.stamina > you.maxstamina) {you.stamina = you.maxstamina};
     //updateGUI();
     }
-function checkExist(elementId){
-    var element =  document.getElementById(elementId);
-if (typeof(element) != 'undefined' && element != null)
-{
-    return true;
-}
-}
+
 
 
 function updateSkillGUI(skillname, lvl, exp, description) {

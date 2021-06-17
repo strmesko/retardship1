@@ -38,6 +38,26 @@ function actionTab(evt, tabName) {
     document.getElementById(tabName).style.display = "block";
     evt.currentTarget.className += " active";
   }
+  function craftSubTab(evt, tabName) {
+    // Declare all variables
+    var i, tabcontent, tablinks;
+
+    // Get all elements with class="lefttabs" and hide them
+    tabcontent = document.getElementsByClassName("craftsubplace");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+  
+    // Get all elements with class="lefttabs" and remove the class "active"
+    tablinks = document.getElementsByClassName("craftsubplace");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+  
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
   // luuks like a tree and idk how it's works ;-DDD
   var tree = document.querySelectorAll('ul.tree a:not(:last-child)');
 for(var i = 0; i < tree.length; i++){

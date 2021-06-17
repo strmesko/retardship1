@@ -6,8 +6,12 @@
     let chartab = document.createElement('button');
     let actiontab = document.createElement('button');
     let maptab = document.createElement('button');
+    let crafttab = document.createElement('button')
+    let buildtab = document.createElement('button')
     let actioncontent = document.createElement('div');
     let charcontent = document.createElement('div');
+    let craftcontent = document.createElement('div');
+    let buildcontent = document.createElement('div');
     let actiontext = document.createElement('b2');
     let charstate = document.createElement('div');
     let hpbar = document.createElement('div');
@@ -34,11 +38,17 @@
     respanel.className = "resbl";
     actionselector.className = "actionselect";
     chartab.innerHTML = "Char";
+    crafttab.innerHTML = "Craft";
+    buildtab.innerHTML = "Build";
     actiontab.innerHTML = "Action";
     actioncontent.innerHTML = "";
     actioncontent.className = "actionplace";
-    charcontent.innerHTML = "your charactur";
+    craftcontent.className = "actionplace";
+    buildcontent.className = "actionplace";
+    charcontent.innerHTML = "";
     chartab.className = "actiontab";
+    crafttab.className = "actiontab";
+    buildtab.className = "actiontab";
     actiontab.className = "actiontab";
     maptab.className = "actiontab"
     maptab.innerHTML = "Map";
@@ -77,11 +87,15 @@
      chartab.id = "chartab";
      actiontab.id = "actiontab";
      maptab.id = "maptab";
+     crafttab.id = "crafttab";
+     buildtab.id = "buildtab";
      mapcontent.id = "mapcontent";
      //stupidResConstructor('div', 'actionplace', 'map', 'mapplace', 'maptab', "THE MAP! DIRECTLY STOLEN FROM DORA!!!")
     //storaeg.id = "storage";
     charcontent.id = "charcontent";
     actioncontent.id = "actionplace";
+    buildcontent.id = "buildplace";
+    craftcontent.id = "craftplace";
     hpbar.id = "hpbar";    
     hpbartext.id = "hpbartext";        
     manabar.id = "manabar";
@@ -104,9 +118,13 @@
     actionselector.appendChild(chartab);
     actionselector.appendChild(actiontab);
     actionselector.appendChild(maptab);
+    actionselector.appendChild(crafttab);
+    actionselector.appendChild(buildtab);
     document.body.appendChild(actioncontent);
     document.body.appendChild(charcontent);
     document.body.appendChild(mapcontent);
+    document.body.appendChild(craftcontent);
+    document.body.appendChild(buildcontent);
     actioncontent.appendChild(actiontext);
     respanel.appendChild(charstate);
     charstate.appendChild(hpbar);
@@ -136,6 +154,13 @@
         document.getElementById(id).setAttribute('data-tooltip', tooltip);
       }
     }
+    function checkExist(elementId){
+      var element =  document.getElementById(elementId);
+  if (typeof(element) != 'undefined' && element != null)
+  {
+      return true;
+  }
+  }
     function resBuild(){
         
     for (i = 1; i < stocks.length ; i++){
@@ -168,10 +193,15 @@
         document.getElementById(thisId).setAttribute('data-tooltip', description.toString());
       }
     }
-    
+
+
+
     ////default TIPS
     document.getElementById('actiontab').setAttribute('data-tooltip', 'ACTIONS. take a proper job and change the world here');
     document.getElementById('chartab').setAttribute('data-tooltip', 'NOT EMPLEMENTED YET. character');
+    document.getElementById('maptab').setAttribute('data-tooltip', 'THE MAP! DIRECTLY STOLEN FROM DORA!!!');
+    document.getElementById('crafttab').setAttribute('data-tooltip', 'Just make your garbage more complicated here');
+    document.getElementById('buildtab').setAttribute('data-tooltip', 'UNABLE TO COMPLY THE BULDING IN PROGRESS. UNABLE TO COMPLY THE BULDING IN PROGRESS. UNABLE TO COMPLY THE BULDING IN PROGRESS. UNABLE TO COMPLY THE BULDING IN PROGRESS. ');
     document.getElementById('resbutton').setAttribute('data-tooltip', 'The palace if your stuff. Sanctuary of garbage');
     document.getElementById('skillsbutton').setAttribute('data-tooltip', 'Faster, Smarter, Stronger...');
     document.getElementById('hpbartext').setAttribute('data-tooltip', 'Your Health status. Not mental Health of course.');
@@ -275,3 +305,23 @@ document.onmouseout = function(e) {
   }
 
 };
+  //eqipment inventory
+  stupidResConstructor('div', 'equipDisplay', 'quip your char duud', 'quipdisplay', 'charcontent', 'Do not crosdress');
+  stupidResConstructor('div', 'inventoryPlace', '', 'inventoryPlace', 'charcontent', '')
+ for (t = 0; t < you.equipinventory.length; t++){
+  stupidResConstructor('div', 'invslot', '', 'invslot'+t, 'inventoryPlace', 'empty slot') ;
+ }
+    // subtabs for crafting 
+    stupidResConstructor('button', 'craftsub', 'common', 'craftcommon', 'craftplace', 'Just a common junk to craft');
+    stupidResConstructor('button', 'craftsub', 'food', 'craftfood', 'craftplace', 'Fuel for your infinite entropy');
+    stupidResConstructor('button', 'craftsub', 'tools', 'crafttools', 'craftplace', 'First step for civilization');
+    stupidResConstructor('div', 'craftsubplace', '', 'commonplace', 'craftplace', '');
+    // crafting window here
+    stupidResConstructor('div', 'craftlist', 'craftlist', 'comcraftlist', 'commonplace', '');
+    stupidResConstructor('div', 'craftdescription', 'craftlist', 'comcraftdescription', 'commonplace', '');
+    stupidResConstructor('div', 'craftdetails', 'craftlist', 'comcraftdetails', 'commonplace', '');
+    stupidResConstructor('div', 'craftsubplace', 'food', 'foodplace', 'craftplace', '');
+    stupidResConstructor('div', 'craftsubplace', 'tools', 'toolsplace', 'craftplace', '');
+
+
+    // subtabs for building

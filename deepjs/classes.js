@@ -29,6 +29,7 @@ class Character {
         this.speed = new Stat("Speed", "GOTTA GO FAST");
         this.speed.lvl = 100;
         this.speed.exp = this.speed.lvl * 100;
+        this.equipinventory = new Array(100);
     }
 }
 function addexp(character, amount){
@@ -40,11 +41,13 @@ function addexp(character, amount){
     character.exp += amount;
 }
 class Equipment {
-    constructor (slot, attack, def)
+    constructor (slot, attack, def, rarity, quality)
     {
         this.slot = slot;
         this.attack = attack;
         this.def = def;
+        this.rarity = rarity;
+        this.quality = quality;
     }
 }
 

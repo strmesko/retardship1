@@ -128,6 +128,7 @@ html{font: 1.1em "SimSun";}
     z-index: 1;
 
   }
+
   .manabar {
     position: absolute;
     top: 47px;
@@ -326,5 +327,133 @@ ul.tree li.open > a:not(:last-child):before {
   clear:both;
   overflow: hidden;
 }
+@keyframes spin1 {
+  0%{transform: rotate(0deg);}
+  100%{transform: rotate(360deg);}
+  }
+  @keyframes spin2{
+  0%{transform: rotate(0deg);}
+  100%{transform: rotate(-360deg);}
+  }
+  #homak {
+    background-image: url(https://cdn.discordapp.com/attachments/723092573601660969/818804824938250240/Myasko-2.png);
+    width: 2rem;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  .craftsub {
+    background-color: #f3eb7d;
+    border: 3px double rgb(197, 206, 73);
+    border-radius: 4px;
+    margin: 1px;
+    font: 1em "MS Gothic";
+    font-size: .9em;
+    
+    z-index: 1;
+  }
+  .buildsub {
+    background-color: #f3eb7d;
+    border: 3px double rgb(197, 206, 73);
+    border-radius: 4px;
+    margin: 2px;
+    font: 1em "MS Gothic";
+    font-size: .9em;
+    
+    z-index: 1;
+  }
+  .craftsubplace {
+    display: none;
+    left: 2px;
+    top: 30px;
+    width: calc(100% - 3px);
+    height: calc(100% - 33px);
+    background-color: #ebffe8;
+    border: 1px solid rgb(199, 224, 141);
+    margin: 1px;
+    font: 1em "MS Gothic";
+    font-size: .9em;
+    
+    z-index: 1;
+  }
+  .craftlist {
+    left: 2px;
+    top: 2px;
+    width: calc(25%);
+    height: calc(100% - 4px);
+    background-color: #ebffe8;
+    border: 1px solid rgb(199, 224, 141);
+    margin: 1px;
+    font: 1em "MS Gothic";
+    font-size: .9em;
+    
+    z-index: 1;
+  }
+  .craftdescription {
+    position: absolute;
+    left: calc(25% + 4px);
+    top: 31px;
+    width: calc(75% - 9px);
+    height: calc(40% - 3px);
+    background-color: #ebffe8;
+    border: 1px solid rgb(199, 224, 141);
+    margin: 1px;
+    font: 1em "MS Gothic";
+    font-size: .9em;
+    
+    z-index: 1;
+  }
+  .craftdetails {
+    position: absolute;
+    left: calc(25% + 4px);
+    top: calc(31px + 40%);
+    width: calc(75% - 9px);
+    height: calc(60% - 37px);
+    background-color: #ebffe8;
+    border: 1px solid rgb(199, 224, 141);
+    margin: 1px;
+    font: 1em "MS Gothic";
+    font-size: .9em;
+    
+    z-index: 1;
+  }
+  .equipDisplay {
+    position: static;
+    left: calc(2px);
+    top: calc(2px);
+    width: calc(25% - 9px);
+    height: calc(100% - 4px);
+    background-color: #ebffe8;
+    border: 1px solid rgb(199, 224, 141);
+    margin: 1px;
+    font: 1em "MS Gothic";
+    font-size: .9em;
+    
+    z-index: 1;
+  }
 
+.inventoryPlace {
+  position: absolute;
+  left: calc(25% - 4px);
+  top: calc(2px);
+  width: calc(75% - 2px);
+  height: calc(100% - 10px);
+  background-color: #ebffe8;
+  border: 1px solid rgb(199, 224, 141);
+  border-radius: 3px;
+  margin: 1px;
+  font: 1em "MS Gothic";
+  font-size: .9em;
+  overflow-x: scroll;
+}
 
+.invslot {
+  display:inline-block;
+  width: 30px;
+  height: 30px;
+  background-color: #d2e2d0;
+  border: 1px solid rgb(190, 214, 135);
+  border-radius: 3px;
+  margin: 1px;
+  font: 1em "MS Gothic";
+  font-size: .9em;
+}
