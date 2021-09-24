@@ -101,7 +101,7 @@
         document.getElementById("actionplace").innerHTML = '';
         document.getElementById("skillstab").innerHTML = 'whoaskills';
         if (herezone.revealed < 100 ){
-            placebutton('Explore', 'Explore the entire tile for further investigate. Full tile exploration reveals neighbour tiles');
+            placebutton('Explore', 'Explore the entire tile for further investigate. <br>Full tile exploration reveals neighbour tiles');
             if (exploreactive == 1){
                 document.getElementById('actionbuttonExplore').style.backgroundColor = '#fcf088';
             }

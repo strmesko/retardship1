@@ -176,7 +176,8 @@
             stupidResConstructor('li', stocks[i].name + 'tab', stocks[i].name + ' x:' + rounded(stocks[i].amount) + stocks[i].unitType , stocks[i].name + 'tab' , 'naturerestab', stocks[i].description);
           }
           document.getElementById(stocks[i].name + 'tab').innerText = stocks[i].name + ' x:' + rounded(stocks[i].amount) + stocks[i].unitType ;
-      }
+          //dobument.getElementById(stocks[i].listStyleImage =('images/inv/mini/' + stocks[i].name + '.png' ) );
+      } 
     }
   }
   resBuild();

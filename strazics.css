@@ -338,6 +338,8 @@ ul.tree li.open > a:not(:last-child):before {
   #homak {
     background-image: url(https://cdn.discordapp.com/attachments/723092573601660969/818804824938250240/Myasko-2.png);
     width: 2rem;
+    top: 6px;
+    right: 104px;
     background-size: contain;
     background-repeat: no-repeat;
   }
@@ -460,7 +462,7 @@ ul.tree li.open > a:not(:last-child):before {
   font: 1em "MS Gothic";
   font-size: .9em;
   background-size:cover;
-  background-image: url("images/tiles/Forest.gif");
+  background-image: url("images/inv/empty1.gif");
 
 }
 .invslotimg {
@@ -475,3 +477,11 @@ ul.tree li.open > a:not(:last-child):before {
   clear:both;
   overflow: hidden; 
 }
+/* didnt work in js. so i do that retardship here.*/
+.blueberrytab {  list-style-image: url("images/inv/mini/blueberry.png");}
+.raspberrytab {  list-style-image: url("images/inv/mini/raspberry.png");}
+.cornberrytab {  list-style-image: url("images/inv/mini/cornberry.png");}
+.strawberrytab {  list-style-image: url("images/inv/mini/strawberry.png");}
+.honeysuckletab {  list-style-image: url("images/inv/mini/honeysuckle.png");}
+.sea​​buckthorntab {  list-style-image: url("images/inv/mini/sea​​buckthorn.png");}
+.watermelontab {  list-style-image: url("images/inv/mini/watermelon.png");}

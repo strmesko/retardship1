@@ -21,6 +21,8 @@ function updateGUI() {
     updateSkillGUI('luck', you.luck.lvl, you.luck.exp, you.luck.description);
     updateSkillGUI('speed', you.speed.lvl, you.speed.exp, you.speed.description);
     resBuild();
+    const elements = document.getElementsByClassName("tooltip"); // retarded way to remove bugged tooltips
+    while (elements.length > 1) elements[0].remove();  
     if (document.getElementById('skillstab').childElementCount > 9){
         for (i = 9; i < document.getElementById("skillstab").childElementCount; i++) {
             switch(document.getElementsByClassName('skillsbar')[i].id){
@@ -60,7 +62,7 @@ function calculateStats(){
 function updateSkillGUI(skillname, lvl, exp, description) {
     document.getElementById('skillsplace'+skillname).childNodes[0].nodeValue = skillname+ " LVL:" + lvl + " EXP remain:" + rounded(rounded(exp / (lvl * 100)) * 100) + "%"; //double dounded because paranoid
     document.getElementById('skillbar'+skillname).style.width = (100 - 100*(exp/(lvl*100))) + '%';
-    document.getElementById('skillsplace'+skillname).setAttribute('data-tooltip', description + " LVL:" + lvl + " EXP remain:" + rounded(exp));
+    document.getElementById('skillsplace'+skillname).setAttribute('data-tooltip', description + "<br> LVL:" + lvl + " EXP remain:" + rounded(exp));
 // $('#skillsbar' + skillname).contents()[0].nodeValue = skillname + " LVL:" + lvl + " EXP remain:" + exp;
 //    document.getElementById('skillsbar'+ skillname).= skillname + " LVL:" + lvl + " EXP remain:" + exp;
 

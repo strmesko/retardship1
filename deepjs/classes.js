@@ -21,9 +21,9 @@ class Character {
         this.str = new Stat("Strengh", "Be stronk, smash hard");
         this.agi = new Stat("Agility", "I AM SICK **CK A LIKE A QUICK **CK");
         this.vit = new Stat("Vitality", "Be unstoppable working horse");
-        this.per = new Stat("Perception", "You smell it? Is it's stinks or tasty? How it's looks? Are you notice something? Yeah, perception is helps to answer that questions");
-        this.int = new Stat("Intellect", "Some situations need a logical solution. But using it in wrong situations can blow your mind, or skull.");
-        this.ins = new Stat("Insight", "Inner guide which helps you to solve solutions where intellect cant. You dont know how it's works. Your inner guide");
+        this.per = new Stat("Perception", "You smell it? Is it's stinks or tasty? How it's looks? Are you notice something?<br> Yeah, perception is helps to answer that questions");
+        this.int = new Stat("Intellect", "Some situations need a logical solution. But using it <br>in wrong situations can blow your mind, or skull.");
+        this.ins = new Stat("Insight", "Inner guide which helps you to solve solutions where intellect cant. <br>You dont know how it's works. Your inner guide");
         this.sou = new Stat("Soul", "Are you lack of soul? HOW DARE YOU!");
         this.luck = new Stat("Luck", "You dont know how it works... probably.");
         this.speed = new Stat("Speed", "GOTTA GO FAST");
